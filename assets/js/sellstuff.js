@@ -3,7 +3,7 @@ var zipInput = "08873";
 var zipArray = [];
 var zipResponse = false;
 
-// initialize firebase
+function initFirebase() {
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyAcRiiCDBcNgsBJA-ZQYa3jCNWh9u1YbNY",
@@ -15,7 +15,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
+   // Get a reference to the database service
+   database = firebase.database();
 
+}
 
 if (zipInput === "") {
     zipInput = "08873";
