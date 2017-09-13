@@ -3,6 +3,8 @@ var zipInput = "08873";
 var zipArray = [];
 var zipResponse = false;
 var userId;
+var database;
+
 function initFirebase() {
     // Initialize Firebase
     var config = {
@@ -66,6 +68,7 @@ function addItem(userId) {
 
 }
 
+initFirebase();
 
 
 if (zipInput === "") {
