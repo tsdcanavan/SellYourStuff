@@ -2,238 +2,260 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Sell Your Stuff</title>
-    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="stylesheet" src="assets/css/reset.css"></script>
-    <link rel="stylesheet" href="assets/css/foundation.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.2/motion-ui.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=">
-    
+  <title>Sell Your Stuff</title>
+  <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="stylesheet" src="assets/css/reset.css"></script>
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.2/motion-ui.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=">
+
 </head>
 
 <body>
-    <div>
-        <div class="grid-x top-bar">
-            <div class="small-12 medium-12 large-12 cells">
+  <div>
+    <div class="grid-x top-bar">
+      <div class="small-12 medium-12 large-12 cells">
 
-                <h1 class="fi-shopping-bag"><span>SELLYOURSTUFF.com</span></h1>
-                <div class="top-bar-right">
-                    <ul class="menu">
-                        <li><input type="search" placeholder="Item, Name, Tags, Zip etc."></li>
-                        <li><button type="button" class="button">Search</button></li>
-                    </ul>
-                    <p>Buy and Sell in your Area - for free!</p>
-                    <div class="login">
-                        <a href="#">Login|</a>
-                        <a href="#">|Signup</a>
-                    </div>
-                </div>
-            </div>
+        <h1 class="fi-shopping-bag"><span>SELLYOURSTUFF.com</span></h1>
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li><input type="search" placeholder="Item, Name, Tags, Zip etc."></li>
+            <li><button type="button" class="button">Search</button></li>
+          </ul>
+          <p>Buy and Sell in your Area - for free!</p>
+          <div class="login">
+            <h6><a href="#" id="loginLink" data-toggle="exampleModal1">Login | Signup</a></h6>
+          </div>
         </div>
-        <div class="grid-x">
-            <div class="large-4 medium-4 small-12 cells">
-                <div class="logmod">
-                    <div class="logmod__wrapper">
-                      <span class="logmod__close">Close</span>
-                      <div class="logmod__container">
-                        <ul class="logmod__tabs">
-                          <li data-tabtar="lgm-2"><a href="#">Login</a></li>
-                          <li data-tabtar="lgm-1"><a href="#">Sign Up</a></li>
-                        </ul>
-                        <div class="logmod__tab-wrapper">
-                        <div class="logmod__tab lgm-1">
-                          <div class="logmod__heading">
-                            <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
-                          </div>
-                          <div class="logmod__form">
-                            <form accept-charset="utf-8" action="#" class="simform">
-                              <div class="sminputs">
-                                <div class="input full">
-                                  <label class="string optional" for="user-name">Email*</label>
-                                  <input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
-                                </div>
-                              </div>
-                              <div class="sminputs">
-                                <div class="input string optional">
-                                  <label class="string optional" for="user-pw">Password *</label>
-                                  <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="text" size="50" />
-                                </div>
-                                <div class="input string optional">
-                                  <label class="string optional" for="user-pw-repeat">Repeat password *</label>
-                                  <input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="text" size="50" />
-                                </div>
-                              </div>
-                              <div class="simform__actions">
-                                <input class="sumbit" name="commit" type="sumbit" value="Create Account" />
-                                <span class="simform__actions-sidetext">By creating an account you agree to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
-                              </div> 
-                            </form>
-                          </div> 
-                          <div class="logmod__alter">
-                            <div class="logmod__alter-container">
-                              <a href="#" class="connect facebook">
-                                <div class="connect__icon">
-                                  <i class="fa fa-facebook"></i>
-                                </div>
-                                <div class="connect__context">
-                                  <span>Create an account with <strong>Facebook</strong></span>
-                                </div>
-                              </a>
-                                
-                              <a href="#" class="connect googleplus">
-                                <div class="connect__icon">
-                                  <i class="fa fa-google-plus"></i>
-                                </div>
-                                <div class="connect__context">
-                                  <span>Create an account with <strong>Google+</strong></span>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="logmod__tab lgm-2">
-                          <div class="logmod__heading">
-                            <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
-                          </div> 
-                          <div class="logmod__form">
-                            <form accept-charset="utf-8" action="#" class="simform">
-                              <div class="sminputs">
-                                <div class="input full">
-                                  <label class="string optional" for="user-name">Email*</label>
-                                  <input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
-                                </div>
-                              </div>
-                              <div class="sminputs">
-                                <div class="input full">
-                                  <label class="string optional" for="user-pw">Password *</label>
-                                  <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
-                                                          <span class="hide-password">Show</span>
-                                </div>
-                              </div>
-                              <div class="simform__actions">
-                                <input class="sumbit" name="commit" type="sumbit" value="Log In" />
-                                <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
-                              </div> 
-                            </form>
-                          </div> 
-                          <div class="logmod__alter">
-                            <div class="logmod__alter-container">
-                              <a href="#" class="connect facebook">
-                                <div class="connect__icon">
-                                  <i class="fa fa-facebook"></i>
-                                </div>
-                                <div class="connect__context">
-                                  <span>Sign in with <strong>Facebook</strong></span>
-                                </div>
-                              </a>
-                              <a href="#" class="connect googleplus">
-                                <div class="connect__icon">
-                                  <i class="fa fa-google-plus"></i>
-                                </div>
-                                <div class="connect__context">
-                                  <span>Sign in with <strong>Google+</strong></span>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                            </div>
-                        </div>
+      </div>
+    </div>
+
+    <div class="grid-x reveal small" id="exampleModal1" data-reveal>
+      <div class="logmod" id="loginBox">
+        <div class="logmod__wrapper">
+          <div class="logmod__container">
+            <ul class="logmod__tabs">
+              <li data-tabtar="lgm-2"><a href="#">Login</a></li>
+              <li data-tabtar="lgm-1"><a href="#">Sign Up</a></li>
+            </ul>
+            <div class="logmod__tab-wrapper">
+              <div class="logmod__tab lgm-1">
+                <div class="logmod__heading">
+                  <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
+                </div>
+                <div class="logmod__form">
+                  <form accept-charset="utf-8" action="#" class="simform">
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-name">Email*</label>
+                        <input class="string optional" maxlength="255" id="user-email" placeholder="example@example.com" type="email" size="50" />
                       </div>
                     </div>
-                  </div>
-            </div>
-            <div class="large-8 medium-8 small-12 cells">
-                <div class="orbit" role="region" aria-label="Sell Your Stuff Idea Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
-                    <ul class="orbit-container">
-                        <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
-                        <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
-                        <li class="orbit-slide">
-                            <img class="orbit-image" src="assets/images/garagesale.gif" alt="garage sales">
-                            <figcaption class="orbit-caption">Host Your Garage Sales Here.</figcaption>
-                        </li>
-                        <li class="is-active orbit-slide">
-                            <img class="orbit-image" src="assets/images/sell1.jpg" alt="Space">
-                            <figcaption class="orbit-caption">Sell Anytime All Year long</figcaption>
-                        </li>
-                        <li class="orbit-slide">
-                            <img class="orbit-image" src="assets/images/sell2.jpg" alt="Space">
-                            <figcaption class="orbit-caption">Buy All You Can"</figcaption>
-                        </li>
-                        <li class="orbit-slide">
-                            <img class="orbit-image" src="assets/images/sell3.jpeg" alt="Space">
-                            <figcaption class="orbit-caption">Make Money From Your Little Collections</figcaption>
-                        </li>
-                    </ul>
-                    <nav class="orbit-bullets">
-                        <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
-                        <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-                        <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
-                        <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
-                    </nav>
+                    <div class="sminputs">
+                      <div class="input string optional">
+                        <label class="string optional" for="user-pw">Password *</label>
+                        <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="text" size="50" />
+                      </div>
+                      <div class="input string optional">
+                        <label class="string optional" for="user-pw-repeat">Repeat password *</label>
+                        <input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="text" size="50" />
+                      </div>
+                    </div>
+                    <div class="simform__actions">
+                      <input class="sumbit" name="commit" type="sumbit" value="Next" data-open="reg2"/>
+                      <span class="simform__actions-sidetext">By creating an account you agree to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
+                    </div>
+                  </form>
                 </div>
+                <div class="logmod__alter">
+                  <div class="logmod__alter-container">
+                    <a href="#" class="connect facebook">
+                      <div class="connect__icon">
+                        <i class="fa fa-facebook"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Create an account with <strong>Facebook</strong></span>
+                      </div>
+                    </a>
+
+                    <a href="#" class="connect googleplus">
+                      <div class="connect__icon">
+                        <i class="fa fa-google-plus"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Create an account with <strong>Google+</strong></span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="logmod__tab lgm-2">
+                <div class="logmod__heading">
+                  <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
+                </div>
+                <div class="logmod__form">
+                  <form accept-charset="utf-8" action="#" class="simform">
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-name">Email*</label>
+                        <input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
+                      </div>
+                    </div>
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-pw">Password *</label>
+                        <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
+                        <span class="hide-password">Show</span>
+                      </div>
+                    </div>
+                    <div class="simform__actions">
+                      <input class="sumbit" name="commit" type="sumbit" value="Log In" />
+                      <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
+                    </div>
+                  </form>
+                </div>
+                <div class="logmod__alter">
+                  <div class="logmod__alter-container">
+                    <a href="#" class="connect facebook">
+                      <div class="connect__icon">
+                        <i class="fa fa-facebook"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Sign in with <strong>Facebook</strong></span>
+                      </div>
+                    </a>
+                    <a href="#" class="connect googleplus">
+                      <div class="connect__icon">
+                        <i class="fa fa-google-plus"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Sign in with <strong>Google+</strong></span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+      </div>
     </div>
+    <div class="reg2Form reveal" id="reg2" data-reveal>
+        <form>
+              <div class="cell">
+                <label><b>Full Name</b>
+                  <input type="text" placeholder='e.g. "John Smith"' id="reg2Input" required pattern="text">
+                </label>
+              </div>
+              <div class="cell">
+                  <label><b>Zip</b>
+                      <input type="text" placeholder='e.g. "07111"' aria-describedby="exampleHelpText" required pattern="number" id="reg2Input">
+                      <span class="form-error">
+                        Please complete with numbers only. It's required.
+                      </span>
+                    </label>
+              </div><hr>
+              <div class="cell">
+                  <span class="float-left terms">By creating an account you agree <br/> to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
+                  <button class="button float-right" id="regSend">Complete Registration
+                  </button>
+                </div>
+            
+          </form>
+
     </div>
-    </div>
+    <div class="grid-x float-center" id="orbit">
+      <div class="orbit" role="region" aria-label="Sell Your Stuff Idea Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+        <ul class="orbit-container">
+          <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+          <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+          <li class="orbit-slide">
+            <img class="orbit-image" src="assets/images/garagesale.gif" alt="garage sales">
+            <figcaption class="orbit-caption">Host Your Garage Sales Here.</figcaption>
+          </li>
+          <li class="is-active orbit-slide">
+            <img class="orbit-image" src="assets/images/sell1.jpg" alt="Space">
+            <figcaption class="orbit-caption">Sell Anytime All Year long</figcaption>
+          </li>
+          <li class="orbit-slide">
+            <img class="orbit-image" src="assets/images/sell2.jpg" alt="Space">
+            <figcaption class="orbit-caption">Buy All You Can"</figcaption>
+          </li>
+          <li class="orbit-slide">
+            <img class="orbit-image" src="assets/images/sell3.jpeg" alt="Space">
+            <figcaption class="orbit-caption">Make Money From Your Little Collections</figcaption>
+          </li>
+        </ul>
+        <nav class="orbit-bullets">
+          <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+          <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+          <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+          <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+        </nav>
+      </div>
     </div>
 
-    <div class="grid-x">
-        <div class="small-12 medium-12 large-12 cells">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="200">Table Header</th>
-                        <th>Table Header</th>
-                        <th width="150">Table Header</th>
-                        <th width="150">Table Header</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Content Goes Here</td>
-                        <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-                        <td>Content Goes Here</td>
-                        <td>Content Goes Here</td>
-                    </tr>
-                    <tr>
-                        <td>Content Goes Here</td>
-                        <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                        <td>Content Goes Here</td>
-                        <td>Content Goes Here</td>
-                    </tr>
-                    <tr>
-                        <td>Content Goes Here</td>
-                        <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                        <td>Content Goes Here</td>
-                        <td>Content Goes Here</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  </div>
+
+  <div class="grid-x">
+    <div class="small-12 medium-12 large-12 cells">
+      <table>
+        <thead>
+          <tr>
+            <th width="200">Table Header</th>
+            <th>Table Header</th>
+            <th width="150">Table Header</th>
+            <th width="150">Table Header</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Content Goes Here</td>
+            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+            <td>Content Goes Here</td>
+            <td>Content Goes Here</td>
+          </tr>
+          <tr>
+            <td>Content Goes Here</td>
+            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+            <td>Content Goes Here</td>
+            <td>Content Goes Here</td>
+          </tr>
+          <tr>
+            <td>Content Goes Here</td>
+            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+            <td>Content Goes Here</td>
+            <td>Content Goes Here</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="grid-x">
-        <p class="callout footer cell small-12 medium-12 large-12">All rigths reserved. &copy <span id="year"></span> Richard-Tom-Stephen</p>
-    </div>
+  </div>
+  <div class="grid-x" id="footer">
+    <p class="callout footer cell small-12 medium-12 large-12">All rigths reserved. &copy 2017-<span id="year"></span> Richard Debrah-Thomas Canavan</p>
+  </div>
 
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-    <script src="assets/js/vendor/what-input.js"></script>
-    <script src="assets/js/vendor/foundation.js"></script>
-    <script src="./assets/js/app.js"></script>
-    <script type="text/javascript" src="./assets/js/sellstuff.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+  <script src="assets/js/vendor/what-input.js"></script>
+  <script src="assets/js/vendor/foundation.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script type="text/javascript" src="./assets/js/sellstuff.js"></script>
 </body>
 
 </html>
