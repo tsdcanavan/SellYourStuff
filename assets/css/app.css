@@ -55,6 +55,12 @@ label {
   padding-right: 15px;
 }
 
+#zipInput {
+  border: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 #reg2 {
   display: block;
   background: #FFF;

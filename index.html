@@ -27,8 +27,8 @@
         <h1 class="fi-shopping-bag"><span>SELLYOURSTUFF.com</span></h1>
         <div class="top-bar-right">
           <ul class="menu">
-            <li><input type="search" placeholder="Item, Name, Tags, Zip etc."></li>
-            <li><button type="button" class="button">Search</button></li>
+            <li><input type="search" placeholder="Item, Name, Tags, Zip etc." id="searchInput"></li>
+            <li><button type="button" class="button" id="searchBtn">Search</button></li>
           </ul>
           <p>Buy and Sell in your Area - for free!</p>
           <div class="login">
@@ -106,18 +106,18 @@
                     <div class="sminputs">
                       <div class="input full">
                         <label class="string optional" for="user-name">Email*</label>
-                        <input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
+                        <input class="string optional user-email" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
                       </div>
                     </div>
                     <div class="sminputs">
                       <div class="input full">
                         <label class="string optional" for="user-pw">Password *</label>
-                        <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
+                        <input class="string optional user-pw" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
                         <span class="hide-password">Show</span>
                       </div>
                     </div>
                     <div class="simform__actions">
-                      <input class="sumbit" name="commit" type="sumbit" value="Log In" />
+                      <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn"/>
                       <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
                     </div>
                   </form>
@@ -160,7 +160,7 @@
               </div>
               <div class="cell">
                   <label><b>Zip</b>
-                      <input type="text" placeholder='e.g. "07111"' aria-describedby="exampleHelpText" required pattern="number" id="reg2Input">
+                      <input type="text" placeholder='e.g. "07111"' aria-describedby="exampleHelpText" required pattern="number" id="zipInput">
                       <span class="form-error">
                         Please complete with numbers only. It's required.
                       </span>
@@ -209,7 +209,7 @@
   </div>
 
   <div class="grid-x">
-    <div class="small-12 medium-12 large-12 cells">
+    <div class="small-12 medium-12 large-12 cells" id="preview">
       <table>
         <thead>
           <tr>
@@ -255,7 +255,8 @@
   <script src="assets/js/vendor/what-input.js"></script>
   <script src="assets/js/vendor/foundation.js"></script>
   <script src="./assets/js/app.js"></script>
+  <script type="text/javascript" src="./assets/js/sellstuffstyle.js"></script>
   <script type="text/javascript" src="./assets/js/sellstuff.js"></script>
 </body>
 
-</html>
+</html>sellstuffstyle.js
