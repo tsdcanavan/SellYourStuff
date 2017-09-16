@@ -99,77 +99,99 @@ function addItem(userId, itemName, itemDesc, itemQty, itemPrice, itemTags, itemI
     });
 }
 
-function register(){
+function register() {
     //capturing registration inputs(console logged and working)
     userEmail = $("#user-email").val().trim();
- console.log("userEmail ", userEmail);
-    userName =  $("#reg2Input").val().trim();
- console.log("userName ", userName);
-    userPwd =  $("#user-pw").val().trim();
- console.log("userPwd ", userPwd);
-    userLocation =  $("#zipInput").val().trim();
- console.log("userLocation ", userLocation);
-    
+    console.log("userEmail ", userEmail);
+    userName = $("#reg2Input").val().trim();
+    console.log("userName ", userName);
+    userPwd = $("#user-pw").val().trim();
+    console.log("userPwd ", userPwd);
+    userLocation = $("#zipInput").val().trim();
+    console.log("userLocation ", userLocation);
+
+}
+
+
+function zipLookupTest() {
+    // testing zip lookup - currently not called anywhere
+    if (zipInput === "") {
+        zipInput = "08873";
     }
 
-
-    function zipLookupTest() {
-        // testing zip lookup - currently not called anywhere
-        if (zipInput === "") {
-            zipInput = "08873";
-        }
-        
-        console.log(zipInput.length);
-        if (zipInput.length === 5) {
-            // zipcodeapi.com   -   zip code api
-            var request = "https://www.zipcodeapi.com/rest/" +
-                "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
-                "radius.json/" + zipInput + "/10/mile";
-            console.log(request);
-            console.log(zipInput);
-            $.ajax({
-                url: request,
-                method: "GET"
-            }).done(function (response) {
-                if (response.zip_codes.length === 0) {
-                    alert("failed zip lookup");
-                    zipResponse = false;
-                } else {
-                    zipResponse = true;
-                    console.log(response);
-                    for (i = 0; i < response.zip_codes.length; i++) {
-                        zipArray[i] = response.zip_codes[i].zip_code;
-                    }
-                    database.ref().on("value", function (snapshot) {
-                        console.log("inside firebase read");
-                    });
+    console.log(zipInput.length);
+    if (zipInput.length === 5) {
+        // zipcodeapi.com   -   zip code api
+        var request = "https://www.zipcodeapi.com/rest/" +
+            "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+            "radius.json/" + zipInput + "/10/mile";
+        console.log(request);
+        console.log(zipInput);
+        $.ajax({
+            url: request,
+            method: "GET"
+        }).done(function (response) {
+            if (response.zip_codes.length === 0) {
+                alert("failed zip lookup");
+                zipResponse = false;
+            } else {
+                zipResponse = true;
+                console.log(response);
+                for (i = 0; i < response.zip_codes.length; i++) {
+                    zipArray[i] = response.zip_codes[i].zip_code;
                 }
-            });
-        }
-        if (zipResponse === false || zipInput.length != 5) {
-            //search itemName, itemDesc, itemTags
-        }
-        }
-        
+                database.ref().on("value", function (snapshot) {
+                    console.log("inside firebase read");
+                });
+            }
+        });
+    }
+    if (zipResponse === false || zipInput.length != 5) {
+        //search itemName, itemDesc, itemTags
+    }
+}
+
+function getWeather(userLocation) {
+    get the weather based on the zip code
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?zipq=" +
+        userLocation +
+        "&units=imperial" +
+        "&APIkey=9a07a10b9ee1e1a8299da42a5c0c8e07";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function (response) {
+        console.log(response);
+        var temp = response.main.temp;
+        var locationName = response.name;
+        var condition = response.weather[0].description
+        var addHtml = $("<p>");
+        addHtml.text=$(locationName+"  "+temp+"  "+condition);
+        $("").(addHtml);
+        console.log(temp + " " + locationName + " " + condition);
+    });
+}
+
+
 initFirebase();
 
 
 //onClick #regSend should trigger this function
-$('#regSend').on('click', function(){
+$('#regSend').on('click', function () {
     register();
     //I am placing my user login here to replace yours
-    var registered=true;
-    firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    registered=false;
-    // ...
-  });
-  if (registered === true) {
-    userId = firebase.auth().currentUser;
-    addUser(userEmail, userName, userLocation, userId )
-  }
+    var registered = true;
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        registered = false;
+        // ...
+    });
+    if (registered === true) {
+        userId = firebase.auth().currentUser;
+        addUser(userEmail, userName, userLocation, userId)
+    }
 });
 
 
