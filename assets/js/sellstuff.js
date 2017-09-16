@@ -40,24 +40,97 @@ function addUser() {
         userLocation: "city, state,zip"
     });
 
+function loginUser(loginEmail) {
+    //find the user
     database.ref().on('child_added', function (snapshot) {
-        userId = snapshot.key;
-        console.log(userId);
-    });
-}
-
-function addUser(loginName) {
-    // login user and get the users key
-    database.ref().on('value', function (snapshot) {
-        if (userName === loginName) {
+        if (userEmail === loginEmail) {
             userId = snapshot.key;
             loginSuccess = true;
-            return
+            return loginSuccess, userId;
         }
     });
-    if (userId === "") {
-        loginSuccess = false;
-    }
+    // login fail, the user didn't exist
+    loginSuccess = false;
+    return loginSucess, "0";
+}
+
+// function addUser(loginEmail, zipCode, password) {
+//     // login user and get the users key
+//     database.ref().on('child_added', function (snapshot) {
+//         if (userEmail === loginEmail) {
+//             userId = snapshot.key;
+//             loginSuccess = false;
+//             return loginSuccess;
+//         }
+//     });
+//     var request = "https://www.zipcodeapi.com/rest/" +
+//         "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+//         "radius.json/" + zipCode + "/1/mile";
+//     $.ajax({
+//         url: request,
+//         method: "GET"
+//     }).done(function (response) {
+//         for (i = 0; i < zip_codes.length; i++) {
+//             if (response.zip_codes[i].distance === 0) {
+//                 var apiCity = response.zip_codes[i].city;
+//                 var apiState = respons.zip_codes[i].state;
+//             }
+//         }
+//         console.log(response);
+//     }
+//     database.ref().push({
+//             userName: "",
+//             userEmail: loginEmail,
+//             userPwd: password,
+//             userLocation: {
+//                 city: apiCity,
+//                 state: apistate,
+//                 zip: zipCode
+//             }
+//         });
+//     loginSuccess = false;
+}
+
+function addUser(loginEmail, zipCode, password, name) {
+    // login user and get the users key
+    var loginEmail;
+    var password;
+    var zipCode;
+    var name;
+
+    var request = "https://www.zipcodeapi.com/rest/" +
+        "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+        "radius.json/" + zipCode + "/1/mile";
+    $.ajax({
+        url: request,
+        method: "GET"
+    }).done(function (response) {
+        console.log(response);
+        for (i = 0; i < response.zip_codes.length; i++) {
+            if (response.zip_codes[i].distance === 0) {
+                var apiCity = response.zip_codes[i].city;
+                var apiState = response.zip_codes[i].state;
+                var apiZip = response.zip_codes[i].zip_code;
+                database.ref().push({
+                    userName: name,
+                    userEmail: loginEmail,
+                    userPwd: password,
+                    userLocation: {
+                        city: apiCity,
+                        state: apiState,
+                        zip: apiZip
+                    }
+                });
+                database.ref().on('child_added', function (snapshot) {
+                    if (userEmail === loginEmail) {
+                        userId = snapshot.key;
+                        return  userId;
+                    }
+                });
+                            
+            }
+        }
+    });
 }
 
 function addItem(userId) {
@@ -107,7 +180,7 @@ if (zipInput.length === 5) {
             }
             database.ref().on("value", function (snapshot) {
                 console.log("inside firebase read");
-            });    
+            });
         }
     });
 }
