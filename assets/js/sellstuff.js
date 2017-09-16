@@ -52,11 +52,47 @@ function loginUser(loginEmail) {
     return loginSucess, "0";
 }
 
+// function addUser(loginEmail, zipCode, password) {
+//     // login user and get the users key
+//     database.ref().on('child_added', function (snapshot) {
+//         if (userEmail === loginEmail) {
+//             userId = snapshot.key;
+//             loginSuccess = false;
+//             return loginSuccess;
+//         }
+//     });
+//     var request = "https://www.zipcodeapi.com/rest/" +
+//         "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+//         "radius.json/" + zipCode + "/1/mile";
+//     $.ajax({
+//         url: request,
+//         method: "GET"
+//     }).done(function (response) {
+//         for (i = 0; i < zip_codes.length; i++) {
+//             if (response.zip_codes[i].distance === 0) {
+//                 var apiCity = response.zip_codes[i].city;
+//                 var apiState = respons.zip_codes[i].state;
+//             }
+//         }
+//         console.log(response);
+//     }
+//     database.ref().push({
+//             userName: "",
+//             userEmail: loginEmail,
+//             userPwd: password,
+//             userLocation: {
+//                 city: apiCity,
+//                 state: apistate,
+//                 zip: zipCode
+//             }
+//         });
+//     loginSuccess = false;
+// }
 
-function addUser(loginEmail, name, zipCode, userId) {
+function addUser(loginEmail, zipCode, password, name) {
     // login user and get the users key
     var loginEmail;
-    var userId;
+    var password;
     var zipCode;
     var name;
 
@@ -73,30 +109,43 @@ function addUser(loginEmail, name, zipCode, userId) {
                 var apiCity = response.zip_codes[i].city;
                 var apiState = response.zip_codes[i].state;
                 var apiZip = response.zip_codes[i].zip_code;
-                database.ref(userId).set({
+                database.ref().push({
                     userName: name,
                     userEmail: loginEmail,
+                    userPwd: password,
                     userLocation: {
                         city: apiCity,
                         state: apiState,
                         zip: apiZip
                     }
                 });
+                database.ref().on('child_added', function (snapshot) {
+                    if (userEmail === loginEmail) {
+                        userId = snapshot.key;
+                        return  userId;
+                    }
+                });
+                            
             }
         }
     });
 }
 
-function addItem(userId, itemName, itemDesc, itemQty, itemPrice, itemTags, itemImg) {
+function addItem(userId) {
     // add an item to the user's account and get the item's key
     database.ref(userId).push({
-        itemName: itemName,
-        itemDesc: itemDesc,
-        itemQty: itemQty,
-        itemPrice: itemPrice,
-        itemTags: itemTags,
-        itemImg: itemImg
+        itemName: "chair",
+        itemDesc: "sitdown",
+        itemQty: 2,
+        itemPrice: 85.00,
+        itemTags: "tagger1, tagger2, tagger3",
+        itemImg: "url infor"
     });
+    database.ref(userId).on('child_added', function (snapshot) {
+        itemId = snapshot.key;
+        console.log(itemId);
+    });
+
 }
 
 function register() {
@@ -109,6 +158,15 @@ function register() {
     console.log("userPwd ", userPwd);
     userLocation = $("#zipInput").val().trim();
     console.log("userLocation ", userLocation);
+
+
+//function to capture user Login in case we need it elsewhere
+function logIn (){
+    userEmail = $(".user-email").val().trim();
+ console.log("userEmail ", userEmail);
+    userPwd =  $(".user-pw").val().trim();
+ console.log("userPwd ", userPwd);
+}
 
 }
 
@@ -173,6 +231,7 @@ function getWeather(userLocation) {
 }
 
 
+
 initFirebase();
 
 
@@ -180,6 +239,7 @@ initFirebase();
 $('#regSend').on('click', function () {
     register();
     //I am placing my user login here to replace yours
+
     var registered = true;
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
         // Handle Errors here.
@@ -192,7 +252,62 @@ $('#regSend').on('click', function () {
         userId = firebase.auth().currentUser;
         addUser(userEmail, userName, userLocation, userId)
     }
+
 });
 
+//onClick #logIn should trigger this function
+$('#logIn').on('click', function(){
+    logIn();
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
+});
+
+//onclick signout
+function signOut(){
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
+}
 
 
+
+if (zipInput === "") {
+    zipInput = "08873";
+}
+
+console.log(zipInput.length);
+if (zipInput.length === 5) {
+    // zipcodeapi.com   -   zip code api
+    var request = "https://www.zipcodeapi.com/rest/" +
+        "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+        "radius.json/" + zipInput + "/10/mile";
+    console.log(request);
+    console.log(zipInput);
+    $.ajax({
+        url: request,
+        method: "GET"
+    }).done(function (response) {
+        if (response.zip_codes.length === 0) {
+            alert("failed zip lookup");
+            zipResponse = false;
+        } else {
+            zipResponse = true;
+            console.log(response);
+            for (i = 0; i < response.zip_codes.length; i++) {
+                zipArray[i] = response.zip_codes[i].zip_code;
+            }
+            database.ref().on("value", function (snapshot) {
+                console.log("inside firebase read");
+            });
+        }
+    });
+}
+if (zipResponse === false || zipInput.length != 5) {
+    //search itemName, itemDesc, itemTags
+}

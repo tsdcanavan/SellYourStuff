@@ -116,3 +116,14 @@ LoginModalController.initialize();
 // //when the close button is clicked hide the login menu
 
 // });
+
+//switching btn register and login tabs
+$('#regLink').on('click', function(){
+    $('#regTab').attr('class', 'current');
+    $('#logTab').attr('class', '');
+});
+
+$('#loginLink').on('click', function(){
+    $('#logTab').attr('class', 'current');
+    $('#regTab').attr('class', '');
+});
