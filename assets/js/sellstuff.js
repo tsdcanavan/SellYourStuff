@@ -127,7 +127,7 @@ function addUser(loginEmail, zipCode, password, name) {
     });
 }
 
-function addItem(userId) {
+function addItem(userId, itemName, itemDesc, itemQty, itemPrice, itemTags, itemImg) {
     // add an item to the user's account and get the item's key
     database.ref(userId).push({
         itemName: "chair",
