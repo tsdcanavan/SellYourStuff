@@ -30,8 +30,11 @@ function search(){
     searchInput = ('#searchInput').val().trim();
 }
 
+//Preview table function
+
+
 //clicking search button
-('#searchBtn').on('click', function(){
+$('#searchBtn').on('click', function(){
     search();
 });
 
@@ -46,6 +49,17 @@ $('#logIn').on('click', function(){
 });
 
 
+
+
+
+
+
+
+
+
+//creating a welcome div with column medium-large 4 and small-12
+//moving the orbit to the right with column 8 on medium-large and stack on small-12
+//creating the preview div and its attr(style in app.css)
 
 
 

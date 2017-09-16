@@ -22,6 +22,15 @@ function initFirebase() {
 
 }
 
+
+//I am placing my user login here to replace yours
+firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+
 function addUser() {
     // add user and get the users key
     database.ref().push({
