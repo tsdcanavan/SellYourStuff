@@ -5,6 +5,18 @@ var zipResponse = false;
 var userId;
 var database;
 
+var userEmail;
+var userName;
+var userPwd;
+var userLocation;
+var searchInput;
+var itmName;
+var itmDesc;
+var itmPrice = 0;
+var itmTag;
+var itmCat;
+var itmImage;
+
 function initFirebase() {
     // Initialize Firebase
     var config = {
@@ -24,18 +36,10 @@ function initFirebase() {
 
 
 
-//I am placing my user login here to replace yours
-firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
-  });
 
 
 function loginUser(loginEmail) {
     //find the user
-
     database.ref().on('child_added', function (snapshot) {
         if (userEmail === loginEmail) {
             userId = snapshot.key;
@@ -83,7 +87,7 @@ function loginUser(loginEmail) {
 //             }
 //         });
 //     loginSuccess = false;
-}
+// }
 
 function addUser(loginEmail, zipCode, password, name) {
     // login user and get the users key
@@ -144,7 +148,34 @@ function addItem(userId, itemName, itemDesc, itemQty, itemPrice, itemTags, itemI
 
 }
 
+function register(){
+    //capturing registration inputs(console logged and working)
+    userEmail = $("#user-email").val().trim();
+ console.log("userEmail ", userEmail);
+    userName =  $("#reg2Input").val().trim();
+ console.log("userName ", userName);
+    userPwd =  $("#user-pw").val().trim();
+ console.log("userPwd ", userPwd);
+    userLocation =  $("#zipInput").val().trim();
+ console.log("userLocation ", userLocation);
+    
+    }
 initFirebase();
+
+
+//onClick #regSend should trigger this function
+$('#regSend').on('click', function(){
+    register();
+    //I am placing my user login here to replace yours
+firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+});
+
+
 
 
 if (zipInput === "") {
