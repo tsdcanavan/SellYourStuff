@@ -1,5 +1,4 @@
 .grid-x{
-	background: green;
 	margin: 10px;
 	border: solid #e6e6e6 2px;
 }
@@ -17,6 +16,62 @@ float: right;
   text-align: center;
 }
 
+#regSend {
+  background: #4CAF50;
+  padding: 10px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.terms{
+  margin-left: 10px;
+  padding-bottom: 27px;
+}
+
+#orbit {
+  width: 730px;
+}
+
+label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  line-height: 24px;
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 10px;
+}
+
+#reg2Input {
+  border: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#zipInput {
+  border: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#reg2 {
+  display: block;
+  background: #FFF;
+  position: relative;
+  max-width: 550px;
+  border: 0px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+  margin: 40px auto;
+  padding: 0px;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -30,7 +85,7 @@ html {
   position: fixed;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 50px;
   left: 0;
   opacity: 1;
   background: rgba(0, 0, 0, 0.2);
@@ -48,7 +103,7 @@ html {
   max-width: 550px;
   border-radius: 4px;
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
-  margin: 120px auto;
+  margin: 40px auto;
 }
 .logmod__close {
   display: block;
@@ -266,7 +321,6 @@ html {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
 }
 .sminputs .input.active {
   background: #eee;
@@ -291,7 +345,7 @@ html {
   line-height: 24px;
 }
 .sminputs .input input {
-  postion: relative;
+  position: relative;
   display: inline-block;
   height: 24px;
   font-size: 15px;

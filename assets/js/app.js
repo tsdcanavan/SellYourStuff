@@ -1,3 +1,4 @@
+$(document).foundation();
 var date = new Date();
 var getYear = date.getFullYear();
 $('#year').text(getYear);
@@ -105,7 +106,13 @@ var LoginModalController = {
         base.findElements().setState().getActiveTab().addClickEvents();
     }
 };
+LoginModalController.initialize();
+//on document load
+// $(".login").on('click', function() {
+//     //when the login/signup link is clicked show login menu
+//     $('#loginBox').attr('class', 'grid-x');
+//     // $('.logmod').toggle();
+//     LoginModalController.initialize();
+// //when the close button is clicked hide the login menu
 
-$(document).ready(function() {
-    LoginModalController.initialize();
-});
+// });
