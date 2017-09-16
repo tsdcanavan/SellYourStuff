@@ -6,14 +6,25 @@ var userName;
 var userPwd;
 var userLocation;
 var searchInput;
+var itmName;
+var itmDesc;
+var itmPrice = 0;
+var itmTag;
+var itmCat;
+var itmImage;
+
 
 //function to capture registration in case we need it elsewhere
 function register(){
     //capturing registration inputs(console logged and working)
     userEmail = $("#user-email").val().trim();
+ console.log("userEmail ", userEmail);
     userName =  $("#reg2Input").val().trim();
+ console.log("userName ", userName);
     userPwd =  $("#user-pw").val().trim();
+ console.log("userPwd ", userPwd);
     userLocation =  $("#zipInput").val().trim();
+ console.log("userLocation ", userLocation);
     
     }
 
@@ -31,17 +42,16 @@ function search(){
 }
 
 //Preview table function
+function previewTable(){
 
+}
 
 //clicking search button
 $('#searchBtn').on('click', function(){
     search();
 });
 
-//onClick #regSend should trigger this function
-$('#regSend').on('click', function(){
-    register();
-});
+
 
 //onClick #logIn should trigger this function
 $('#logIn').on('click', function(){
