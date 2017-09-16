@@ -103,6 +103,13 @@ function addUser(loginEmail, zipCode, password, name) {
                         zip: apiZip
                     }
                 });
+                database.ref().on('child_added', function (snapshot) {
+                    if (userEmail === loginEmail) {
+                        userId = snapshot.key;
+                        return  userId;
+                    }
+                });
+                            
             }
         }
     });
