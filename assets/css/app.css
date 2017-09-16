@@ -12,6 +12,10 @@
 float: right;
 }
 
+.logOut {
+  float: right;
+  }
+
 .footer {
   text-align: center;
 }

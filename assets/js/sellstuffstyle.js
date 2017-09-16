@@ -36,6 +36,15 @@ function logIn (){
  console.log("userPwd ", userPwd);
 }
 
+//onclick signout
+function signOut(){
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
+}
+
 //capturing from the search input
 function search(){
     searchInput = ('#searchInput').val().trim();
