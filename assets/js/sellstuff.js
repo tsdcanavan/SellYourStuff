@@ -22,8 +22,20 @@ function initFirebase() {
 
 }
 
+
+
+//I am placing my user login here to replace yours
+firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+
+
 function loginUser(loginEmail) {
     //find the user
+
     database.ref().on('child_added', function (snapshot) {
         if (userEmail === loginEmail) {
             userId = snapshot.key;
