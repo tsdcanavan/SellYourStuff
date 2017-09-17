@@ -121,14 +121,11 @@ LoginModalController.initialize();
 $('#regLink').on('click', function(){
     $('#regTab').attr('class', 'current');
     $('#logTab').attr('class', '');
+    $('#show2Pwd').attr('class', 'logmod__tab lgm-1 show');
 });
 
 $('#loginLink').on('click', function(){
     $('#logTab').attr('class', 'current');
     $('#regTab').attr('class', '');
+    $('#show2Pwd').attr('class', 'logmod__tab lgm-1');
 });
-
-.on("formvalid.zf.abide", function(ev,frm) {
-    console.log("Form id "+frm.attr('id')+" is valid");
-    // ajax post form 
-  })

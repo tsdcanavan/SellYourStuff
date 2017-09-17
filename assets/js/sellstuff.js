@@ -13,9 +13,11 @@ var searchInput;
 var itmName;
 var itmDesc;
 var itmPrice = 0;
+var itmQty = 0;
 var itmTag;
 var itmCat;
 var itmImage;
+var itmForm;
 
 function initFirebase() {
     // Initialize Firebase

@@ -45,6 +45,10 @@ float: right;
   width: 730px;
 }
 
+#orbit1 {
+  width: 700px;
+}
+
 label {
   overflow: hidden;
   text-overflow: ellipsis;
