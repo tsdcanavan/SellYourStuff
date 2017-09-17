@@ -225,7 +225,7 @@ function getWeather() {
         console.log("lat:" + lat);
         console.log("lon:" + lng);
     //get the weather based on the location
-    queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +
+    queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" +
         lat +
         "&lon=" + lng + 
         "&units=imperial" +
@@ -297,7 +297,7 @@ function signOut() {
 }
 
 
-
+function getRadius() {
 if (zipInput === "") {
     zipInput = "08873";
 }
@@ -331,4 +331,5 @@ if (zipInput.length === 5) {
 }
 if (zipResponse === false || zipInput.length != 5) {
     //search itemName, itemDesc, itemTags
+}
 }
