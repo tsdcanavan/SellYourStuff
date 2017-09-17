@@ -124,10 +124,10 @@ function addUser(loginEmail, zipCode, password, name) {
                 database.ref().on('child_added', function (snapshot) {
                     if (userEmail === loginEmail) {
                         userId = snapshot.key;
-                        return  userId;
+                        return userId;
                     }
                 });
-                            
+
             }
         }
     });
@@ -162,13 +162,13 @@ function register() {
     console.log("userLocation ", userLocation);
 
 
-//function to capture user Login in case we need it elsewhere
-function logIn (){
-    userEmail = $(".user-email").val().trim();
- console.log("userEmail ", userEmail);
-    userPwd =  $(".user-pw").val().trim();
- console.log("userPwd ", userPwd);
-}
+    //function to capture user Login in case we need it elsewhere
+    function logIn() {
+        userEmail = $(".user-email").val().trim();
+        console.log("userEmail ", userEmail);
+        userPwd = $(".user-pw").val().trim();
+        console.log("userPwd ", userPwd);
+    }
 
 }
 
@@ -211,10 +211,25 @@ function zipLookupTest() {
     }
 }
 
-function getWeather(userLocation) {
-    get the weather based on the zip code
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?zipq=" +
-        userLocation +
+function getWeather() {
+    // get the location
+    var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAHXdoX0zZXjF3zQaTbFf8FTV3X97aaGX8"
+
+    $.ajax({
+        url: queryURL,
+        method: "POST"
+    }).done(function (response) {
+        // var lat = Math.floor(response.location.lat);
+        // var lng = Math.floor(response.location.lng);
+        var lat = response.location.lat;
+        var lng = response.location.lng;
+        console.log(response);
+        console.log("lat:" + lat);
+        console.log("lon:" + lng);
+    //get the weather based on the location
+    queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +
+        lat +
+        "&lon=" + lng + 
         "&units=imperial" +
         "&APIkey=9a07a10b9ee1e1a8299da42a5c0c8e07";
     $.ajax({
@@ -226,14 +241,20 @@ function getWeather(userLocation) {
         var locationName = response.name;
         var condition = response.weather[0].description
         var addHtml = $("<p>");
-        addHtml.text=$(locationName+"  "+temp+"  "+condition);
-        $("").(addHtml);
+        addHtml.attr("class","float-center");
+        addHtml.text(locationName + "  Temp (F): " + temp + "   Cond: " + condition);
+        console.log(addHtml);
         console.log(temp + " " + locationName + " " + condition);
+        $("weather").empty();
+        $("#weather").append(addHtml);
     });
+});
 }
 
 
 initFirebase();
+
+getWeather();
 
 
 //onClick #regSend should trigger this function
@@ -255,23 +276,23 @@ $('#regSend').on('click', function () {
 });
 
 //onClick #logIn should trigger this function
-$('#logIn').on('click', function(){
+$('#logIn').on('click', function () {
     logIn();
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
-      });
+    });
 });
 
 //onclick signout
-function signOut(){
-    firebase.auth().signOut().then(function() {
+function signOut() {
+    firebase.auth().signOut().then(function () {
         // Sign-out successful.
-      }).catch(function(error) {
+    }).catch(function (error) {
         // An error happened.
-      });
+    });
 }
 
 
