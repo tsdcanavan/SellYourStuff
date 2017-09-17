@@ -127,3 +127,8 @@ $('#loginLink').on('click', function(){
     $('#logTab').attr('class', 'current');
     $('#regTab').attr('class', '');
 });
+
+.on("formvalid.zf.abide", function(ev,frm) {
+    console.log("Form id "+frm.attr('id')+" is valid");
+    // ajax post form 
+  })

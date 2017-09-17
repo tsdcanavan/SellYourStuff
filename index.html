@@ -24,7 +24,7 @@
     <div class="grid-x top-bar">
       <div class="small-12 medium-12 large-12 cells">
 
-        <h1 class="fi-shopping-bag"><span>SELLYOURSTUFF.com</span></h1>
+        <h1 class="fi-shopping-bag" id="logo"><span>SELLYOURSTUFF.com</span></h1>
         <div class="top-bar-right">
           <ul class="menu">
             <li><input type="search" placeholder="Item, Name, Tags, Zip etc." id="searchInput"></li>
@@ -32,7 +32,7 @@
           </ul>
           <p>Buy and Sell in your Area - for free!</p>
 
-          <div class="float-center" style="background: blue">WEATHER DIV</div>
+          <div class=" grid-x float-center" id="weather">WEATHER DIV</div>
           <div class="login grid-x">
             <h6><a href="#" id="loginLink" data-toggle="exampleModal1">Login |</a></h6>
             <h6><a href="#" id="regLink" data-toggle="exampleModal1">| Signup</a></h6>
@@ -72,7 +72,7 @@
                       </div>
                       <div class="input string optional">
                         <label class="string optional" for="user-pw-repeat">Repeat password *</label>
-                        <input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="text" size="50" />
+                        <input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="text" size="50" required pattern="alpha_numeric" data-equalto="password"/>
                       </div>
                     </div>
                     <div class="simform__actions">
@@ -158,11 +158,12 @@
       </div>
     </div>
     <div class="reg2Form reveal" id="reg2" data-reveal>
-        <form>
-              <div class="cell">
-                <label><b>Full Name</b>
-                  <input type="text" placeholder="John Smith" id="reg2Input" required pattern="/^[a-zA-Z\s]+$/" class="abide no-validate">
+        <form data-abide>
+            <div class="name-field">
+                <label>Your name <small>required</small>
+                  <input type="text" required pattern="alpha" id="reg2Input">
                 </label>
+                <small class="form-error">Name is required.</small>
               </div>
               <div class="cell">
                   <label><b>Zip</b>
@@ -181,34 +182,39 @@
           </form>
 
     </div>
-    <div class="grid-x float-center" id="orbit">
-      <div class="orbit" role="region" aria-label="Sell Your Stuff Idea Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
-        <ul class="orbit-container">
-          <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
-          <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
-          <li class="orbit-slide">
-            <img class="orbit-image" src="assets/images/garagesale.gif" alt="garage sales">
-            <figcaption class="orbit-caption">Host Your Garage Sales Here.</figcaption>
-          </li>
-          <li class="is-active orbit-slide">
-            <img class="orbit-image" src="assets/images/sell1.jpg" alt="Space">
-            <figcaption class="orbit-caption">Sell Anytime All Year long</figcaption>
-          </li>
-          <li class="orbit-slide">
-            <img class="orbit-image" src="assets/images/sell2.jpg" alt="Space">
-            <figcaption class="orbit-caption">Buy All You Can"</figcaption>
-          </li>
-          <li class="orbit-slide">
-            <img class="orbit-image" src="assets/images/sell3.jpeg" alt="Space">
-            <figcaption class="orbit-caption">Make Money From Your Little Collections</figcaption>
-          </li>
-        </ul>
-        <nav class="orbit-bullets">
-          <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
-          <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-          <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
-          <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
-        </nav>
+    <div class="grid-x" >
+    <div class="cells medium-4 small-12" >
+
+    </div>
+      <div class="cells medium-8 small-12" id="orbit">
+        <div class="orbit" role="region" aria-label="Sell Your Stuff Idea Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+          <ul class="orbit-container">
+            <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+            <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+            <li class="orbit-slide">
+              <img class="orbit-image" src="assets/images/garagesale.gif" alt="garage sales">
+              <figcaption class="orbit-caption">Host Your Garage Sales Here.</figcaption>
+            </li>
+            <li class="is-active orbit-slide">
+              <img class="orbit-image" src="assets/images/sell1.jpg" alt="Space">
+              <figcaption class="orbit-caption">Sell Anytime All Year long</figcaption>
+            </li>
+            <li class="orbit-slide">
+              <img class="orbit-image" src="assets/images/sell2.jpg" alt="Space">
+              <figcaption class="orbit-caption">Buy All You Can"</figcaption>
+            </li>
+            <li class="orbit-slide">
+              <img class="orbit-image" src="assets/images/sell3.jpeg" alt="Space">
+              <figcaption class="orbit-caption">Make Money From Your Little Collections</figcaption>
+            </li>
+          </ul>
+          <nav class="orbit-bullets">
+            <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+            <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+            <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+            <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+          </nav>
+        </div>
       </div>
     </div>
 

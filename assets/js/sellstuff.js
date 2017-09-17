@@ -159,6 +159,15 @@ function register() {
     userLocation = $("#zipInput").val().trim();
     console.log("userLocation ", userLocation);
 
+
+//function to capture user Login in case we need it elsewhere
+function logIn (){
+    userEmail = $(".user-email").val().trim();
+ console.log("userEmail ", userEmail);
+    userPwd =  $(".user-pw").val().trim();
+ console.log("userPwd ", userPwd);
+}
+
 }
 
 
