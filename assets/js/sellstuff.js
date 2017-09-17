@@ -217,13 +217,17 @@ function getWeather() {
         url: queryURL,
         method: "POST"
     }).done(function (response) {
+        // var lat = Math.floor(response.location.lat);
+        // var lng = Math.floor(response.location.lng);
         var lat = response.location.lat;
         var lng = response.location.lng;
-
+        console.log(response);
+        console.log("lat:" + lat);
+        console.log("lon:" + lng);
     //get the weather based on the location
     queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +
         lat +
-        "lon=" + lng +
+        "&lon=" + lng + 
         "&units=imperial" +
         "&APIkey=9a07a10b9ee1e1a8299da42a5c0c8e07";
     $.ajax({
@@ -235,9 +239,12 @@ function getWeather() {
         var locationName = response.name;
         var condition = response.weather[0].description
         var addHtml = $("<p>");
-        addHtml.text = $(locationName + "  " + temp + "  " + condition);
+        addHtml.attr("class","float-center");
+        addHtml.text(locationName + "  Temp (F): " + temp + "   Cond: " + condition);
         console.log(addHtml);
         console.log(temp + " " + locationName + " " + condition);
+        $("weather").empty();
+        $("#weather").append(addHtml);
     });
 });
 }
