@@ -52,6 +52,43 @@ function loginUser(loginEmail) {
     return loginSucess, "0";
 }
 
+// function addUser(loginEmail, zipCode, password) {
+//     // login user and get the users key
+//     database.ref().on('child_added', function (snapshot) {
+//         if (userEmail === loginEmail) {
+//             userId = snapshot.key;
+//             loginSuccess = false;
+//             return loginSuccess;
+//         }
+//     });
+//     var request = "https://www.zipcodeapi.com/rest/" +
+//         "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+//         "radius.json/" + zipCode + "/1/mile";
+//     $.ajax({
+//         url: request,
+//         method: "GET"
+//     }).done(function (response) {
+//         for (i = 0; i < zip_codes.length; i++) {
+//             if (response.zip_codes[i].distance === 0) {
+//                 var apiCity = response.zip_codes[i].city;
+//                 var apiState = respons.zip_codes[i].state;
+//             }
+//         }
+//         console.log(response);
+//     }
+//     database.ref().push({
+//             userName: "",
+//             userEmail: loginEmail,
+//             userPwd: password,
+//             userLocation: {
+//                 city: apiCity,
+//                 state: apistate,
+//                 zip: zipCode
+//             }
+//         });
+//     loginSuccess = false;
+// }
+
 function addUser(loginEmail, zipCode, password, name) {
     // login user and get the users key
     var loginEmail;
