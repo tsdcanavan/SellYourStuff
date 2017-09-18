@@ -20,6 +20,15 @@ float: right;
   text-align: center;
 }
 
+#logo {
+  margin-bottom: 20px;
+}
+
+#weather {
+  background: #AC4A12;
+  position: absolute;
+}
+
 #regSend {
   background: #4CAF50;
   padding: 10px;
@@ -34,6 +43,10 @@ float: right;
 
 #orbit {
   width: 730px;
+}
+
+#orbit1 {
+  width: 700px;
 }
 
 label {

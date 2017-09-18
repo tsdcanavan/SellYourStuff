@@ -13,9 +13,11 @@ var searchInput;
 var itmName;
 var itmDesc;
 var itmPrice = 0;
+var itmQty = 0;
 var itmTag;
 var itmCat;
 var itmImage;
+var itmForm;
 
 function initFirebase() {
     // Initialize Firebase
@@ -250,7 +252,6 @@ function getWeather() {
 }
 
 
-
 initFirebase();
 
 getWeather();
@@ -260,7 +261,6 @@ getWeather();
 $('#regSend').on('click', function () {
     register();
     //I am placing my user login here to replace yours
-
     var registered = true;
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
         // Handle Errors here.
@@ -273,7 +273,6 @@ $('#regSend').on('click', function () {
         userId = firebase.auth().currentUser;
         addUser(userEmail, userName, userLocation, userId)
     }
-
 });
 
 //onClick #logIn should trigger this function
