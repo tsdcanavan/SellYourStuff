@@ -1,6 +1,7 @@
 .grid-x{
 	margin: 10px;
-	border: solid #e6e6e6 2px;
+  border: solid #e6e6e6 2px;
+  border: none;
 }
 
 .menu {
