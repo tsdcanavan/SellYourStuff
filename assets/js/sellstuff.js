@@ -245,7 +245,7 @@ function getWeather() {
         addHtml.text(locationName + "  Temp (F): " + temp + "   Cond: " + condition);
         console.log(addHtml);
         console.log(temp + " " + locationName + " " + condition);
-        $("weather").empty();
+        $("#weather").empty();
         $("#weather").append(addHtml);
     });
 });
