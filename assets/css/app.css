@@ -27,6 +27,7 @@ float: right;
 #weather {
   background: #AC4A12;
   position: absolute;
+  margin-left: 50px;
 }
 
 #regSend {
@@ -47,6 +48,7 @@ float: right;
 
 #orbit1 {
   width: 700px;
+  margin-right: 20px;
 }
 
 label {
