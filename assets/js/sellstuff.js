@@ -286,8 +286,8 @@ setTimeout(function(){
         addUser(userEmail, userName, userLocation, userId);
         $('#userConfirmedDiv').attr('class', 'grid-x');
         $('#landing').attr('class', 'grid-x reveal');
-        $('#login').attr('class', 'grid-x reveal');
-        $('#signOut').attr('class', 'grid-x');
+        $('#login').attr('class', 'login grid-x reveal');
+        $('#logOut').attr('class', '');
     }
     else{
         alert('inputs are needed to register!')
@@ -305,6 +305,8 @@ $('#logIn').on('click', function () {
         var errorMessage = error.message;
         $('#userConfirmedDiv').attr('class', 'grid-x');
         $('#landing').attr('class', 'grid-x reveal');
+        $('#login').attr('class', 'login grid-x reveal');
+        $('#logOut').attr('class', '');
         // ...
     });
 });
