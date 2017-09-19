@@ -308,6 +308,7 @@ function zipSearch(zipInput) {
         url: request,
         method: "GET"
     }).done(function (response) {
+        console.log(response);
         if (response.zip_codes === null || response.indexOf("error_msg") != -1) {
             console.log("failed zip lookup");
         } else {
