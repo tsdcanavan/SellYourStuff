@@ -309,7 +309,7 @@ function zipSearch(zipInput) {
         method: "GET"
     }).done(function (response) {
         console.log(response);
-        if (response.zip_codes === null || response.indexOf("error_msg") != -1) {
+        if (response.zip_codes === null) {
             console.log("failed zip lookup");
         } else {
             console.log(response);
@@ -318,7 +318,7 @@ function zipSearch(zipInput) {
             }
             database.ref().on("value", function (snapshot) {
                 console.log("inside firebase read");
-                if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1 ) {
+                if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1) {
                     console.log(snapshot);
                 }
             });
