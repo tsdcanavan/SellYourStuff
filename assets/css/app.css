@@ -26,8 +26,8 @@ float: right;
 
 #weather {
   background: #AC4A12;
-  position: absolute;
-  margin-left: 50px;
+  position: relative;
+  text-align: center
 }
 
 #regSend {
