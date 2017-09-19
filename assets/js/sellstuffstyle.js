@@ -55,10 +55,10 @@ function previewTable(){
 
 }
 
-//clicking search button
-$('#searchBtn').on('click', function(){
-    search();
-});
+//clicking search button - moved to sellstuff.js
+// $('#searchBtn').on('click', function(){
+//     search();
+// });
 
 
 

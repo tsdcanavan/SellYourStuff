@@ -1,7 +1,6 @@
 // zipInput is the requested zip, we default the radius to 10 miles
-var zipInput = "08873";
+var zipInput;
 var zipArray = [];
-var zipResponse = false;
 var userId;
 var database;
 
@@ -63,7 +62,7 @@ function addUser(loginEmail, name, zipCode, uid) {
     var name;
 
     console.log("uid ", uid);
-    
+
     var request = "https://www.zipcodeapi.com/rest/" +
         "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
         "radius.json/" + zipCode + "/1/mile";
@@ -71,34 +70,49 @@ function addUser(loginEmail, name, zipCode, uid) {
         url: request,
         method: "GET"
     }).done(function (response) {
-        for (i = 0; i < response.zip_codes.length; i++) {
-            if (response.zip_codes[i].distance === 0) {
-                var apiCity = response.zip_codes[i].city;
-                var apiState = response.zip_codes[i].state;
-                var apiZip = response.zip_codes[i].zip_code;
-                database.ref(uid).set({
-                    userName: name,
-                    userEmail: loginEmail,
-                    userLocation: {
-                        city: apiCity,
-                        state: apiState,
-                        zip: apiZip
-                    }
-                });
+        console.log("response ", response);
+        console.log("zip_codes ", response.zip_codes);
+        apiCity = "Default";
+        apiState = "XX";
+        apiZip = "00000";
+
+        if (response.zip_codes != null) {
+            for (i = 0; i < response.zip_codes.length; i++) {
+                if (response.zip_codes[i].distance === 0) {
+                    var apiCity = response.zip_codes[i].city;
+                    var apiState = response.zip_codes[i].state;
+                    var apiZip = response.zip_codes[i].zip_code;
+                }
             }
         }
+        database.ref(uid).set({
+            userName: name,
+            userEmail: loginEmail,
+            userLocation: {
+                city: apiCity,
+                state: apiState,
+                zip: apiZip
+            }
+        });
     });
 }
 
-function addItem(userId) {
+function addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag) {
+    var itmName;
+    var itmDesc;
+    var itmCat;
+    var itmPrice;
+    var itmQty;
+    var itmTag;
     // add an item to the user's account and get the item's key
     database.ref(userId).push({
-        itemName: "chair",
-        itemDesc: "sitdown",
-        itemQty: 2,
-        itemPrice: 85.00,
-        itemTags: "tagger1, tagger2, tagger3",
-        itemImg: "url infor"
+        itemName: itmName,
+        itemDesc: itmDesc,
+        itemCat: itmCat,
+        itemQty: itmQty,
+        itemPrice: itmPrice,
+        itemTag: itmTag,
+        itemImg: "image info - future use"
     });
     database.ref(userId).on('child_added', function (snapshot) {
         itemId = snapshot.key;
@@ -119,53 +133,12 @@ function register() {
     console.log("userLocation ", userLocation);
 
 }
-    //function to capture user Login in case we need it elsewhere
-    function logIn() {
-        userEmail = $(".user-email").val().trim();
-        console.log("userEmail ", userEmail);
-        userPwd = $(".user-pw").val().trim();
-        console.log("userPwd ", userPwd);
-    }
-
-
-
-
-function zipLookupTest() {
-    // testing zip lookup - currently not called anywhere
-    if (zipInput === "") {
-        zipInput = "08873";
-    }
-
-    console.log(zipInput.length);
-    if (zipInput.length === 5) {
-        // zipcodeapi.com   -   zip code api
-        var request = "https://www.zipcodeapi.com/rest/" +
-            "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
-            "radius.json/" + zipInput + "/10/mile";
-        console.log(request);
-        console.log(zipInput);
-        $.ajax({
-            url: request,
-            method: "GET"
-        }).done(function (response) {
-            if (response.zip_codes.length === 0) {
-                alert("failed zip lookup");
-                zipResponse = false;
-            } else {
-                zipResponse = true;
-                console.log(response);
-                for (i = 0; i < response.zip_codes.length; i++) {
-                    zipArray[i] = response.zip_codes[i].zip_code;
-                }
-                database.ref().on("value", function (snapshot) {
-                    console.log("inside firebase read");
-                });
-            }
-        });
-    }
-    if (zipResponse === false || zipInput.length != 5) {
-        //search itemName, itemDesc, itemTags
-    }
+//function to capture user Login in case we need it elsewhere
+function logIn() {
+    userEmail = $(".user-email").val().trim();
+    console.log("userEmail ", userEmail);
+    userPwd = $(".user-pw").val().trim();
+    console.log("userPwd ", userPwd);
 }
 
 function getWeather() {
@@ -183,36 +156,36 @@ function getWeather() {
         console.log(response);
         console.log("lat:" + lat);
         console.log("lon:" + lng);
-    //get the weather based on the location
-    queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" +
-        lat +
-        "&lon=" + lng + 
-        "&units=imperial" +
-        "&APIkey=9a07a10b9ee1e1a8299da42a5c0c8e07";
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function (response) {
-        console.log(response);
-        var temp = response.main.temp;
-        var locationName = response.name;
-        var condition = response.weather[0].description
-        var addHtml = $("<p>");
-        addHtml.attr("class","float-center");
-        addHtml.text(locationName + "  Temp (F): " + temp + "   Cond: " + condition);
-        console.log(addHtml);
-        console.log(temp + " " + locationName + " " + condition);
-        $("#weather").empty();
-        $("#weather").append(addHtml);
+        //get the weather based on the location
+        queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" +
+            lat +
+            "&lon=" + lng +
+            "&units=imperial" +
+            "&APIkey=9a07a10b9ee1e1a8299da42a5c0c8e07";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function (response) {
+            console.log(response);
+            var temp = response.main.temp;
+            var locationName = response.name;
+            var condition = response.weather[0].description
+            var addHtml = $("<p>");
+            addHtml.attr("class", "float-center");
+            addHtml.text(locationName + " Temp: " + temp + "(F)   Cond: " + condition);
+            console.log(addHtml);
+            console.log(temp + " " + locationName + " " + condition);
+            $("#weather").empty();
+            $("#weather").append(addHtml);
+        });
     });
-});
 }
 
+$(document).ready(function () {
+    initFirebase();
+    getWeather();
 
-initFirebase();
-
-getWeather();
-
+});
 
 //onClick #regSend should trigger this function
 $('#regSend').on('click', function () {
@@ -222,36 +195,36 @@ $('#regSend').on('click', function () {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode + ": "+errorMessage);
+        console.log(errorCode + ": " + errorMessage);
         // ...
     });
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-          // User is signed in.
-          userId = user.uid;
-          // ...
-        } 
-      });
+            // User is signed in.
+            userId = user.uid;
+            // ...
+        }
+    });
 
 
-//     var userId = firebase.auth().currentUser.uid;
-//  console.log("userId ", userId);
-//  var currUser = firebase.auth().currentUser;
-//  console.log("currUser ", currUser);
-setTimeout(function(){
-    console.log(userId);
-    if (userId != null) {
-        addUser(userEmail, userName, userLocation, userId);
-        $('#userConfirmedDiv').attr('class', 'grid-x');
-        $('#landing').attr('class', 'grid-x reveal');
-        $('#login').attr('class', 'login grid-x reveal');
-        $('#logOut').attr('class', '');
-    }
-    else{
-        alert('inputs are needed to register!')
-    }
-}, 1000);
+    //     var userId = firebase.auth().currentUser.uid;
+    //  console.log("userId ", userId);
+    //  var currUser = firebase.auth().currentUser;
+    //  console.log("currUser ", currUser);
+    setTimeout(function () {
+        console.log(userId);
+        if (userId != null) {
+            addUser(userEmail, userName, userLocation, userId);
+            $('#userConfirmedDiv').attr('class', 'grid-x');
+            $('#landing').attr('class', 'grid-x reveal');
+            $('#login').attr('class', 'login grid-x reveal');
+            $('#logOut').attr('class', '');
+        }
+        else {
+            alert('inputs are needed to register!')
+        }
+    }, 1000);
 });
 
 
@@ -264,66 +237,91 @@ $('#logIn').on('click', function () {
         var errorMessage = error.message;
         // ...
     });
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-          // User is signed in.
-          userId = user.uid;
-          $('#userConfirmedDiv').attr('class', 'grid-x');
-          $('#landing').attr('class', 'grid-x reveal');
-          $('#login').attr('class', 'login grid-x reveal');
-          $('#logOut').attr('class', '');
+            // User is signed in.
+            userId = user.uid;
+            $('#userConfirmedDiv').attr('class', 'grid-x');
+            $('#landing').attr('class', 'grid-x reveal');
+            $('#login').attr('class', 'login grid-x reveal');
+            $('#logOut').attr('class', '');
             // ...
-        } 
-      });
+        }
+    });
 });
 
 //onclick signout
-$('#logOut').on('click', function(){
-function signOut() {
-    firebase.auth().signOut().then(function () {
-        // Sign-out successful.
-        $('#userConfirmedDiv').attr('class', 'grid-x reveal');
-        $('#landing').attr('class', 'grid-x');
-    }).catch(function (error) {
-        // An error happened.
-        alert('Logout Unsuccessful. Please try again!');
-    });
-}
+$('#logOut').on('click', function () {
+    function signOut() {
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+            $('#userConfirmedDiv').attr('class', 'grid-x reveal');
+            $('#landing').attr('class', 'grid-x');
+        }).catch(function (error) {
+            // An error happened.
+            alert('Logout Unsuccessful. Please try again!');
+        });
+    }
 });
 
-function getRadius() {
-if (zipInput === "") {
-    zipInput = "08873";
+//clicking search button
+$('#searchBtn').on('click', function () {
+    var searchString = $("#searchInput").val().trim();
+    if (searchString.length === 5) {
+        console.log(searchString);
+        zipSearch(searchString);
+    } else {
+        itemSearch(searchString);
+    }
+});
+
+function itemSearch(searchString) {
+    var searchString;
+    console.log("searchString ", searchString);
+
 }
 
-console.log(zipInput.length);
-if (zipInput.length === 5) {
+//onClick #regSend should trigger this function
+$('#itmForm').on('click', function (e) {
+    e.preventDefault();
+    itmName = $("#itmName").val().trim();
+    itmDesc = $("#itmDesc").val().trim();
+    itmCat = $("#itmCat").val();
+    itmPrice = $("#itmPrice").val().trim();
+    itmQty = $("#itmQty").val().trim();
+    itmTag = $("#itmTag").val().trim();
+    addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag)
+    //  $("itmName").val("");
+    //  $("itmDesc").val("");
+    //  $("itmCat").val("");
+    //  $("itmPrice").val("");
+    //  $("itmQty").val("");
+
+});
+
+function zipSearch(zipInput) {
     // zipcodeapi.com   -   zip code api
     var request = "https://www.zipcodeapi.com/rest/" +
         "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
         "radius.json/" + zipInput + "/10/mile";
-    console.log(request);
-    console.log(zipInput);
     $.ajax({
         url: request,
         method: "GET"
     }).done(function (response) {
-        if (response.zip_codes.length === 0) {
-            alert("failed zip lookup");
-            zipResponse = false;
+        if (response.zip_codes === null || response.indexOf("error_msg") != -1) {
+            console.log("failed zip lookup");
         } else {
-            zipResponse = true;
             console.log(response);
             for (i = 0; i < response.zip_codes.length; i++) {
                 zipArray[i] = response.zip_codes[i].zip_code;
             }
             database.ref().on("value", function (snapshot) {
                 console.log("inside firebase read");
+                if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1 ) {
+                    console.log(snapshot);
+                }
             });
         }
     });
-}
-if (zipResponse === false || zipInput.length != 5) {
-    //search itemName, itemDesc, itemTags
-}
+
 }
