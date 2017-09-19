@@ -105,7 +105,6 @@ function addUser(loginEmail, zipCode, password, name) {
         url: request,
         method: "GET"
     }).done(function (response) {
-        console.log(response);
         for (i = 0; i < response.zip_codes.length; i++) {
             if (response.zip_codes[i].distance === 0) {
                 var apiCity = response.zip_codes[i].city;
@@ -161,7 +160,7 @@ function register() {
     userLocation = $("#zipInput").val().trim();
     console.log("userLocation ", userLocation);
 
-
+}
     //function to capture user Login in case we need it elsewhere
     function logIn() {
         userEmail = $(".user-email").val().trim();
@@ -170,7 +169,7 @@ function register() {
         console.log("userPwd ", userPwd);
     }
 
-}
+
 
 
 function zipLookupTest() {
@@ -260,20 +259,42 @@ getWeather();
 //onClick #regSend should trigger this function
 $('#regSend').on('click', function () {
     register();
-    //I am placing my user login here to replace yours
-    var registered = true;
+
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        registered = false;
         // ...
     });
-    if (registered === true) {
-        userId = firebase.auth().currentUser;
-        addUser(userEmail, userName, userLocation, userId)
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          userId = user.uid;
+          // ...
+        } 
+      });
+
+
+//     var userId = firebase.auth().currentUser.uid;
+//  console.log("userId ", userId);
+//  var currUser = firebase.auth().currentUser;
+//  console.log("currUser ", currUser);
+setTimeout(function(){
+    console.log(userId);
+    if (userId !== '') {
+        addUser(userEmail, userName, userLocation, userId);
+        $('#userConfirmedDiv').attr('class', 'grid-x');
+        $('#landing').attr('class', 'grid-x reveal');
+        $('#login').attr('class', 'grid-x reveal');
+        $('#signOut').attr('class', 'grid-x');
     }
+    else{
+        alert('inputs are needed to register!')
+    }
+}, 1000);
 });
+
 
 //onClick #logIn should trigger this function
 $('#logIn').on('click', function () {
@@ -282,19 +303,25 @@ $('#logIn').on('click', function () {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        $('#userConfirmedDiv').attr('class', 'grid-x');
+        $('#landing').attr('class', 'grid-x reveal');
         // ...
     });
 });
 
 //onclick signout
+$('#logOut').on('click', function(){
 function signOut() {
     firebase.auth().signOut().then(function () {
         // Sign-out successful.
+        $('#userConfirmedDiv').attr('class', 'grid-x reveal');
+        $('#landing').attr('class', 'grid-x');
     }).catch(function (error) {
         // An error happened.
+        alert('Login Unsuccessful. Please try again!');
     });
 }
-
+});
 
 function getRadius() {
 if (zipInput === "") {

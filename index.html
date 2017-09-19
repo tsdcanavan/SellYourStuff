@@ -9,7 +9,7 @@
   <title>Sell Your Stuff</title>
   <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <style type="stylesheet" src="assets/css/reset.css"></style>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css"></link>
   <link rel="stylesheet" href="assets/css/foundation.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.2/motion-ui.css">
   <link rel="stylesheet" href="assets/css/app.css">
@@ -33,12 +33,17 @@
             </ul>
             <p>Buy and Sell in your Area - for free!</p>
 
+<<<<<<< HEAD
             <div class=" grid-x float-center" id="weather"><p>WEATHER</p></div>
             <div class="login grid-x">
+=======
+            <div class=" grid-x float-center" id="weather"><p>Weather</p></div>
+            <div class="login grid-x" id="login">
+>>>>>>> c6933a608d5ee39266cf4cd86f2319bdef0753d1
               <h6><a href="#" id="loginLink" data-toggle="exampleModal1">Login |</a></h6>
               <h6><a href="#" id="regLink" data-toggle="exampleModal1">| Signup</a></h6>
             </div>
-            <div class="logOut">
+            <div class="logOut" id="signOut">
               <h6><a href="#" id="logOut" data-toggle="exampleModal" class="reveal" data-reveal>Signout</a></h6>
             </div>
           </div>
@@ -125,7 +130,7 @@
                         </div>
                       </div>
                       <div class="simform__actions">
-                        <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn" />
+                        <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn"  data-close/>
                         <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
                       </div>
                     </form>
@@ -178,22 +183,22 @@
           <hr>
           <div class="cell">
             <span class="float-left terms">By creating an account you agree <br/> to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
-            <button class="button float-right" id="regSend">Complete Registration
+            <button class="button float-right" data-close id="regSend">Complete Registration
                   </button>
           </div>
 
         </form>
 
       </div>
-      <div class="grid-x" id="userConfirmedDiv">
-        <div class="cells medium-4 small-12" id="userConfirmed">
+      <div class="grid-x reveal" id="userConfirmedDiv">
+        <div class="cells medium-4 float-center small-12" id="userConfirmed">
           <h3>Welcome <span id="userName">Name of User</span>!</h3>
           <p>Use the form on the left to upload new items to post</p>
           <p>Your posted items will appear below</p>
         </div>
-        <div class="cells medium-8 small-12" id="orbit1">
-          <h4 class="float-right">Posting is as easy as flling out the form!</h4>
-          <form data-abide novalidate class="float-right">
+        <div class="cells medium-7 small-12" id="orbit1">
+          <h4 class="float-center">Posting is as easy as flling out the form!</h4>
+          <form data-abide novalidate class="float-center">
             <div data-abide-error class="alert callout" style="display: none;">
               <p><i class="fi-alert"></i> There are some errors in your form.</p>
             </div>
@@ -229,7 +234,6 @@
                 <input class="input-group-field" type="number" id="itmQty">
                 </label>
               </div>
-              </label>
             </div>
             <div class="small-12 medium-8 columns cells">
               <label>Tags.<small> Include related tags to help buyers locate your items easily!</small>
@@ -247,7 +251,7 @@
         </div>
       </div>
     </div>
-    <div class="grid-x">
+    <div class="grid-x" id="landing">
       <div class="cells medium-4 small-12">
         <h4>Welcome to <b>SELLYOURSTUFF.com</b></h4>
         <p>Find great deals for all electronics, cars, clothes, pet products and much more including job postings. You don't
@@ -294,7 +298,6 @@
   </div>
   <div class="grid-x" id="footer">
     <p class="callout footer cell small-12 medium-12 large-12">All rigths reserved. &copy 2017-<span id="year"></span> Richard Debrah-Thomas Canavan</p>
-  </div>
   </div>
 
 
