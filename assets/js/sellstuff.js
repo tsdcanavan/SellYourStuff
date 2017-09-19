@@ -278,7 +278,7 @@ function signOut() {
         $('#landing').attr('class', 'grid-x');
     }).catch(function (error) {
         // An error happened.
-        alert('Login Unsuccessful. Please try again!');
+        alert('Logout Unsuccessful. Please try again!');
     });
 }
 });
