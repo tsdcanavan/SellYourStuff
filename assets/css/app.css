@@ -1,11 +1,40 @@
+body {
+  font-family: 'Shadows Into Light', cursive;
+}
+
 .grid-x{
 	margin: 10px;
-	border: solid #e6e6e6 2px;
+  border: none;
+}
+
+#jumbotron {
+  background: #76323f;
+  margin: 0;
+  border-bottom: 2px solid grey;
+}
+
+#header {
+  background: #692323;
+  color: #fff;
+  font-weight: bold;
+}
+
+#searchInput {
+  margin-right: 0;
+}
+
+#welcome {
+  text-align: center;
+  padding-top: 40px;
 }
 
 .menu {
 	float: right;
-	top: -20px;
+  top: -20px;
+}
+
+ul.menu {
+    margin-right: 20px;
 }
 
 .login {
@@ -18,10 +47,21 @@ float: right;
 
 .footer {
   text-align: center;
+  font-weight: bold;
+}
+
+#footer {
+  background: #c0b283;
 }
 
 #logo {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-family: 'Walter Turncoat', cursive;
+  font-weight: bolder;
+}
+
+.fi-shopping-bag {
+  color: #44445F;
 }
 
 #weather {
@@ -48,6 +88,7 @@ float: right;
 #orbit1 {
   width: 700px;
   margin-right: 20px;
+  background: #F5E7DD;
 }
 
 label {
