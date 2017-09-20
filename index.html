@@ -26,197 +26,195 @@
       <div class="grid-x top-bar" id="jumbotron">
         <div class="small-12 medium-12 large-12 cells">
 
-          <h1 id="logo"><span class="fi-shopping-bag"></span>SELLYOURSTUFF.com</h1>
+          <h1 id="logo"><span class="fi-shopping-bag"></span><a href="https://tsdcanavan.github.io/SellYourStuff/" id="indexLink">SELLYOURSTUFF.com</a></h1>
           <div class="top-bar-right">
             <ul class="menu">
               <li><input type="search" placeholder="Item, Name, Tags, Zip etc." id="searchInput"></li>
-              <li><button type="button" class="button" id="searchBtn">Search</button></li>
+              <li><button type="button" class="button warning" id="searchBtn">Search</button></li>
             </ul>
-            <p>Buy and Sell in your Area - for free!</p>
+            <p id="sub">Buy and Sell in your Area - for free!</p>
 
-            <div class="grid-x">
+            <div class="grid-x" id="lower">
               <div class=" cells medium-4 float-center" id="weather">
                 <p>Weather</p>
               </div>
               <div class="login grid-x" id="login">
 
-                <h6><a href="#" id="loginLink" data-toggle="exampleModal1">Login |</a></h6>
-                <h6><a href="#" id="regLink" data-toggle="exampleModal1">| Signup</a></h6>
+                <h6><a href="#" id="loginLink" data-toggle="exampleModal1"><b>Login</b> |</a></h6>
+                <h6><a href="#" id="regLink" data-toggle="exampleModal1">| <b>Signup</b></a></h6>
               </div>
             </div>
             <div class="logOut" id="signOut">
-              <h6><a href="#" id="logOut" data-toggle="exampleModal" class="reveal">Signout</a></h6>
+              <h6><a href="#" id="logOut" data-toggle="exampleModal" class="reveal"><b>Signout</b></a></h6>
             </div>
           </div>
         </div>
       </div>
     </div>
-      <div class="grid-x reveal small" id="exampleModal1" data-reveal>
-        <div class="logmod" id="loginBox">
-          <div class="logmod__wrapper">
-            <div class="logmod__container">
-              <ul class="logmod__tabs">
-                <li data-tabtar="lgm-2" id="logTab"><a href="#">Login</a></li>
-                <li data-tabtar="lgm-1" id="regTab"><a href="#">Sign Up</a></li>
-              </ul>
-              <div class="logmod__tab-wrapper">
-                <div class="logmod__tab lgm-1" id="show2Pwd">
-                  <div class="logmod__heading">
-                    <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
-                  </div>
-                  <div class="logmod__form">
-                    <form accept-charset="utf-8" action="#" class="simform">
-                      <div class="sminputs">
-                        <div class="input full">
-                          <label class="string optional" for="user-name">Email*</label>
-                          <input class="string optional" maxlength="255" id="user-email" placeholder="example@example.com" type="email" size="50" />
-                        </div>
+    <div class="grid-x reveal small" id="exampleModal1" data-reveal>
+      <div class="logmod" id="loginBox">
+        <div class="logmod__wrapper">
+          <div class="logmod__container">
+            <ul class="logmod__tabs">
+              <li data-tabtar="lgm-2" id="logTab"><a href="#">Login</a></li>
+              <li data-tabtar="lgm-1" id="regTab"><a href="#">Sign Up</a></li>
+            </ul>
+            <div class="logmod__tab-wrapper">
+              <div class="logmod__tab lgm-1" id="show2Pwd">
+                <div class="logmod__heading">
+                  <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
+                </div>
+                <div class="logmod__form">
+                  <form accept-charset="utf-8" action="#" class="simform">
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-name">Email*</label>
+                        <input class="string optional" maxlength="255" id="user-email" placeholder="example@example.com" type="email" size="50" />
                       </div>
-                      <div class="sminputs">
-                        <div class="input string optional">
-                          <label class="string optional" for="user-pw">Password *</label>
-                          <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="text" size="50" />
-                        </div>
-                        <div class="input string optional">
-                          <label class="string optional" for="user-pw-repeat">Repeat password *</label>
-                          <input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="text" size="50" required
-                            pattern="alpha_numeric" data-equalto="password" />
-                        </div>
-                      </div>
-                      <div class="simform__actions">
-                        <input class="sumbit" name="commit" type="sumbit" value="Next" data-open="reg2" />
-                        <span class="simform__actions-sidetext">By creating an account you agree to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="logmod__alter">
-                    <div class="logmod__alter-container">
-                      <a href="#" class="connect facebook">
-                        <div class="connect__icon">
-                          <i class="fa fa-facebook"></i>
-                        </div>
-                        <div class="connect__context">
-                          <span>Create an account with <strong>Facebook</strong></span>
-                        </div>
-                      </a>
-
-                      <a href="#" class="connect googleplus">
-                        <div class="connect__icon">
-                          <i class="fa fa-google-plus"></i>
-                        </div>
-                        <div class="connect__context">
-                          <span>Create an account with <strong>Google+</strong></span>
-                        </div>
-                      </a>
                     </div>
+                    <div class="sminputs">
+                      <div class="input string optional">
+                        <label class="string optional" for="user-pw">Password *</label>
+                        <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="text" size="50" />
+                      </div>
+                      <div class="input string optional">
+                        <label class="string optional" for="user-pw-repeat">Repeat password *</label>
+                        <input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="text" size="50" required
+                          pattern="alpha_numeric" data-equalto="password" />
+                      </div>
+                    </div>
+                    <div class="simform__actions">
+                      <input class="sumbit" name="commit" type="sumbit" value="Next" data-open="reg2" />
+                      <span class="simform__actions-sidetext">By creating an account you agree to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
+                    </div>
+                  </form>
+                </div>
+                <div class="logmod__alter">
+                  <div class="logmod__alter-container">
+                    <a href="#" class="connect facebook">
+                      <div class="connect__icon">
+                        <i class="fa fa-facebook"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Create an account with <strong>Facebook</strong></span>
+                      </div>
+                    </a>
+
+                    <a href="#" class="connect googleplus">
+                      <div class="connect__icon">
+                        <i class="fa fa-google-plus"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Create an account with <strong>Google+</strong></span>
+                      </div>
+                    </a>
                   </div>
                 </div>
-                <div class="logmod__tab lgm-2">
-                  <div class="logmod__heading">
-                    <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
-                  </div>
-                  <div class="logmod__form">
-                    <form accept-charset="utf-8" action="#" class="simform">
-                      <div class="sminputs">
-                        <div class="input full">
-                          <label class="string optional" for="user-name">Email*</label>
-                          <input class="string optional user-email" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
-                        </div>
+              </div>
+              <div class="logmod__tab lgm-2" id="noLog">
+                <div class="logmod__heading">
+                  <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
+                </div>
+                <div class="logmod__form">
+                  <form accept-charset="utf-8" action="#" class="simform">
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-name">Email*</label>
+                        <input class="string optional user-email" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
                       </div>
-                      <div class="sminputs">
-                        <div class="input full">
-                          <label class="string optional" for="user-pw">Password *</label>
-                          <input class="string optional user-pw" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
-                          <span class="hide-password">Show</span>
-                        </div>
-                      </div>
-                      <div class="simform__actions">
-                        <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn" data-close/>
-                        <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="logmod__alter">
-                    <div class="logmod__alter-container">
-                      <a href="#" class="connect facebook">
-                        <div class="connect__icon">
-                          <i class="fa fa-facebook"></i>
-                        </div>
-                        <div class="connect__context">
-                          <span>Sign in with <strong>Facebook</strong></span>
-                        </div>
-                      </a>
-                      <a href="#" class="connect googleplus">
-                        <div class="connect__icon">
-                          <i class="fa fa-google-plus"></i>
-                        </div>
-                        <div class="connect__context">
-                          <span>Sign in with <strong>Google+</strong></span>
-                        </div>
-                      </a>
                     </div>
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-pw">Password *</label>
+                        <input class="string optional user-pw" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
+                        <span class="hide-password">Show</span>
+                      </div>
+                    </div>
+                    <div class="simform__actions">
+                      <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn" data-close/>
+                      <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
+                    </div>
+                  </form>
+                </div>
+                <div class="logmod__alter">
+                  <div class="logmod__alter-container">
+                    <a href="#" class="connect facebook">
+                      <div class="connect__icon">
+                        <i class="fa fa-facebook"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Sign in with <strong>Facebook</strong></span>
+                      </div>
+                    </a>
+                    <a href="#" class="connect googleplus">
+                      <div class="connect__icon">
+                        <i class="fa fa-google-plus"></i>
+                      </div>
+                      <div class="connect__context">
+                        <span>Sign in with <strong>Google+</strong></span>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-            <button class="close-button" data-close aria-label="Close modal" type="button">
+          </div>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
         </div>
       </div>
-      <div class="reg2Form reveal" id="reg2" data-reveal>
-        <form data-abide>
-          <div class="name-field">
-            <label>Your name <small>required</small>
+    </div>
+    <div class="reg2Form reveal" id="reg2" data-reveal>
+      <form data-abide>
+        <div class="name-field">
+          <label>Your name <small>required</small>
                   <input type="text" required pattern="alpha" id="reg2Input">
                 </label>
-            <small class="form-error">Name is required.</small>
-          </div>
-          <div class="cell">
-            <label><b>Zip</b>
+          <small class="form-error">Name is required.</small>
+        </div>
+        <div class="cell">
+          <label><b>Zip</b>
                       <input type="text" placeholder="07111" aria-describedby="desc" required pattern="number" id="zipInput">
                       <span class="form-error" id="desc">
                         Please complete with numbers only. It's required.
                       </span>
                     </label>
-          </div>
-          <hr>
-          <div class="cell">
-            <span class="float-left terms">By creating an account you agree <br/> to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
-            <button class="button float-right" data-close id="regSend">Complete Registration
-                  </button>
-          </div>
-
-        </form>
-
-      </div>
-      <div class="grid-x reveal" id="userConfirmedDiv">
-        <div class="cells medium-4 float-center small-12" id="userConfirmed">
-          <div id="welcome">
-            <h3>Welcome <span id="userName">Name of User</span>!</h3>
-            <p>Use the form on the left to upload new items to post</p>
-            <p>Your posted items will appear below</p>
-          </div>
         </div>
-        <div class="cells medium-7 small-12" id="orbit1">
-          <h4 class="float-center">Posting is as easy as flling out the form!</h4>
-          <form data-abide novalidate class="float-center">
-            <div data-abide-error class="alert callout" style="display: none;">
-              <p><i class="fi-alert"></i> There are some errors in your form.</p>
-            </div>
-            <div class="small-12 medium-8 columns cells">
-              <label>Name
+        <hr>
+        <div class="cell">
+          <span class="float-left terms">By creating an account you agree <br/> to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>
+          <button class="button float-right" data-close id="regSend">Complete Registration
+                  </button>
+        </div>
+      </form>
+    </div>
+    <div class="grid-x reveal" id="userConfirmedDiv">
+      <div class="cells medium-4 float-center small-12" id="userConfirmed">
+        <div id="welcome">
+          <h3>Welcome <span id="userName">Name of User</span>!</h3>
+          <p>Use the form on the left to upload new items to post</p>
+          <p>Your posted items will appear below</p>
+        </div>
+      </div>
+      <div class="cells medium-8 small-12" id="orbit1">
+        <h4 class="float-center">Posting is as easy as flling out the form!</h4>
+        <form data-abide novalidate class="float-center">
+          <div data-abide-error class="alert callout" style="display: none;">
+            <p><i class="fi-alert"></i> There are some errors in your form.</p>
+          </div>
+          <div class="small-10 medium-8 columns cells">
+            <label>Name
                     <input type="text" placeholder="Title of your post" id="itmName">
                   </label>
-            </div>
-            <div class="small-12 medium-8 columns cells">
-              <label>Description
+          </div>
+          <div class="small-10 medium-8 columns cells">
+            <label>Description
                     <input type="text" placeholder="A detailed description of your item" id="itmDesc">
                   </label>
-            </div>
-            <div class="small-12 medium-8 columns cells">
-              <label>Category<br>
+          </div>
+          <div class="small-12 medium-8 columns cells">
+            <label>Category<br>
               <select id="itmCat">
                 <option value="electronics" >Electronics</option>
                 <option value="classifieds" >Classifieds</option>
@@ -226,32 +224,34 @@
                 <option value="books" >Books</option>
               </select>
             </label>
-              <div class="small-12 medium-8 columns cells">
-                <label>Price
+            <div class="small-12 medium-8 columns cells">
+              <label>Price
                     <div class="input-group">
                     <span class="input-group-label">$</span>
               <input class="input-group-field" type="number" id="itmPrice">
                     </div>
                   </label>
-                <label>Quantity
+              <label>Quantity
                 <input class="input-group-field" type="number" id="itmQty">
                 </label>
-              </div>
             </div>
-            <div class="small-12 medium-8 columns cells">
-              <label>Tags.<small> Include related tags to help buyers locate your items easily!</small>
+          </div>
+          <div class="small-12 medium-8 columns cells">
+            <label>Tags.<small> Include related tags to help buyers locate your items easily!</small>
                     <input type="text" placeholder="e.g. 'showbiz'"  id="itmTag">
                   </label>
-            </div>
-            <div class="small-12 medium-8 columns cells">
-              <label for="imgUpload" class="button" id="itmImage">Upload Image</label>
-              <input type="file" id="imgUpload" class="show-for-sr">
-              <fieldset class="medium-6 columns">
-                <button class="button" type="submit" value="Submit" id="itmForm">Submit</button>
-              </fieldset>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="small-12 medium-8 columns cells">
+            <label for="imgUpload" class="button" id="itmImage">Upload Image</label>
+            <input type="file" id="imgUpload" class="show-for-sr">
+            <fieldset class="medium-6 columns">
+              <button class="button" type="submit" value="Submit" id="itmForm" data-open="postSuccess">Submit</button>
+            </fieldset>
+            <div class="small reveal" id="postSuccess" data-reveal>
+                <p>Posting Successful</p>
+              </div>
+          </div>
+        </form>
       </div>
     </div>
     <div class="grid-x" id="landing">
@@ -293,6 +293,7 @@
           </nav>
         </div>
       </div>
+    </div>
 
 
     <div class="grid-x">
@@ -300,10 +301,11 @@
         <h3 style="text-align:center">You have not posted any items yet!</h3>
       </div>
     </div>
+    <div class="grid-x callout" id="footer">
+      <p class="footer cell small-12 medium-12 large-12">All rigths reserved. &copy 2017-<span id="year"></span> Richard Debrah-Thomas Canavan</p>
+    </div>
   </div>
-  <div class="grid-x callout" id="footer">
-    <p class="footer cell small-12 medium-12 large-12">All rigths reserved. &copy 2017-<span id="year"></span> Richard Debrah-Thomas Canavan</p>
-  </div>
+
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>

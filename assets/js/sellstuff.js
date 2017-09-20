@@ -138,21 +138,15 @@ function addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag) {
 function register() {
     //capturing registration inputs(console logged and working)
     userEmail = $("#user-email").val().trim();
-    console.log("userEmail ", userEmail);
     userName = $("#reg2Input").val().trim();
-    console.log("userName ", userName);
     userPwd = $("#user-pw").val().trim();
-    console.log("userPwd ", userPwd);
     userLocation = $("#zipInput").val().trim();
-    console.log("userLocation ", userLocation);
 
 }
 //function to capture user Login in case we need it elsewhere
 function logIn() {
     userEmail = $(".user-email").val().trim();
-    console.log("userEmail ", userEmail);
     userPwd = $(".user-pw").val().trim();
-    console.log("userPwd ", userPwd);
 }
 
 function getWeather() {
@@ -313,6 +307,7 @@ $('#regSend').on('click', function () {
             $('#landing').attr('class', 'grid-x reveal');
             $('#login').attr('class', 'login grid-x reveal');
             $('#logOut').attr('class', '');
+            
         }
         else {
             alert('inputs are needed to register!')
@@ -324,6 +319,7 @@ $('#regSend').on('click', function () {
 //onClick #logIn should trigger this function
 $('#logIn').on('click', function () {
     logIn();
+    onSubmitForm();
     firebase.auth().signInWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -388,3 +384,33 @@ $('#itmForm').on('click', function (e) {
     itmQty = $("itmQty").val("");
     itmTag = $("itmTag").val("");
 });
+
+function zipSearch(zipInput) {
+    // zipcodeapi.com   -   zip code api
+    var request = "https://www.zipcodeapi.com/rest/" +
+        "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+        "radius.json/" + zipInput + "/10/mile";
+    $.ajax({
+        url: request,
+        method: "GET"
+    }).done(function (response) {
+        console.log(response);
+        if (response.zip_codes === null) {
+            console.log("failed zip lookup");
+        } else {
+            console.log($(this).response);
+            for (i = 0; i < response.zip_codes.length; i++) {
+                zipArray[i] = response.zip_codes[i].zip_code;
+            }
+            database.ref().on("value", function (snapshot) {
+                console.log("inside firebase read");
+                console.log(snapshot);
+                if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1) {
+                    console.log(snapshot.val());
+                }
+            });
+        }
+    });
+
+}
+
