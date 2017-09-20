@@ -10,6 +10,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css"></link>
+  <link href="https://fonts.googleapis.com/css?family=Gentium+Basic|Shadows+Into+Light" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/foundation.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.2/motion-ui.css">
   <link rel="stylesheet" href="assets/css/app.css">
@@ -21,11 +22,11 @@
 
 <body>
   <div class="grid-y">
-    <div>
-      <div class="grid-x top-bar">
+    <div id="header">
+      <div class="grid-x top-bar" id="jumbotron">
         <div class="small-12 medium-12 large-12 cells">
 
-          <h1 class="fi-shopping-bag" id="logo"><span>SELLYOURSTUFF.com</span></h1>
+          <h1 id="logo"><span class="fi-shopping-bag"></span>SELLYOURSTUFF.com</h1>
           <div class="top-bar-right">
             <ul class="menu">
               <li><input type="search" placeholder="Item, Name, Tags, Zip etc." id="searchInput"></li>
@@ -34,20 +35,22 @@
             <p>Buy and Sell in your Area - for free!</p>
 
             <div class="grid-x">
-            <div class=" cells medium-4 float-center" id="weather"><p>Weather</p></div>
-            <div class="login grid-x" id="login">
+              <div class=" cells medium-4 float-center" id="weather">
+                <p>Weather</p>
+              </div>
+              <div class="login grid-x" id="login">
 
-              <h6><a href="#" id="loginLink" data-toggle="exampleModal1">Login |</a></h6>
-              <h6><a href="#" id="regLink" data-toggle="exampleModal1">| Signup</a></h6>
+                <h6><a href="#" id="loginLink" data-toggle="exampleModal1">Login |</a></h6>
+                <h6><a href="#" id="regLink" data-toggle="exampleModal1">| Signup</a></h6>
+              </div>
             </div>
-          </div>
             <div class="logOut" id="signOut">
               <h6><a href="#" id="logOut" data-toggle="exampleModal" class="reveal">Signout</a></h6>
             </div>
           </div>
         </div>
       </div>
-
+    </div>
       <div class="grid-x reveal small" id="exampleModal1" data-reveal>
         <div class="logmod" id="loginBox">
           <div class="logmod__wrapper">
@@ -128,7 +131,7 @@
                         </div>
                       </div>
                       <div class="simform__actions">
-                        <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn"  data-close/>
+                        <input class="sumbit" name="commit" type="sumbit" value="Log In" id="logIn" data-close/>
                         <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
                       </div>
                     </form>
@@ -190,9 +193,11 @@
       </div>
       <div class="grid-x reveal" id="userConfirmedDiv">
         <div class="cells medium-4 float-center small-12" id="userConfirmed">
-          <h3>Welcome <span id="userName">Name of User</span>!</h3>
-          <p>Use the form on the left to upload new items to post</p>
-          <p>Your posted items will appear below</p>
+          <div id="welcome">
+            <h3>Welcome <span id="userName">Name of User</span>!</h3>
+            <p>Use the form on the left to upload new items to post</p>
+            <p>Your posted items will appear below</p>
+          </div>
         </div>
         <div class="cells medium-7 small-12" id="orbit1">
           <h4 class="float-center">Posting is as easy as flling out the form!</h4>
@@ -239,10 +244,10 @@
                   </label>
             </div>
             <div class="small-12 medium-8 columns cells">
-              <label for="imgUpload" class="button"  id="itmImage">Upload Image</label>
+              <label for="imgUpload" class="button" id="itmImage">Upload Image</label>
               <input type="file" id="imgUpload" class="show-for-sr">
               <fieldset class="medium-6 columns">
-                <button class="button" type="submit" value="Submit"  id="itmForm">Submit</button>
+                <button class="button" type="submit" value="Submit" id="itmForm">Submit</button>
               </fieldset>
             </div>
           </form>
@@ -251,10 +256,12 @@
     </div>
     <div class="grid-x" id="landing">
       <div class="cells medium-4 small-12">
-        <h4>Welcome to <b>SELLYOURSTUFF.com</b></h4>
-        <p>Find great deals for all electronics, cars, clothes, pet products and much more including job postings. You don't
-          have to wait till summer for your <b>GARAGE SALES</b>.</p>
-        <h4><b><em>Sell it right here!!</em></b></h4>
+        <div id="welcome">
+          <h4>Welcome to <b>SELLYOURSTUFF.com</b></h4>
+          <p>Find great deals for all electronics, cars, clothes, pet products and much more including job postings. You don't
+            have to wait till summer for your <b>GARAGE SALES</b>.</p>
+          <h4><b><em>Sell it right here!!</em></b></h4>
+        </div>
       </div>
       <div class="cells medium-8 small-12 float-center" id="orbit">
         <div class="orbit" role="region" aria-label="Sell Your Stuff Idea Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
@@ -266,15 +273,15 @@
               <figcaption class="orbit-caption">Host Your Garage Sales Here.</figcaption>
             </li>
             <li class="is-active orbit-slide">
-              <img class="orbit-image" src="assets/images/sell1.jpg" alt="Space">
+              <img class="orbit-image" src="assets/images/sell1.jpg" alt="Estate Sales">
               <figcaption class="orbit-caption">Sell Anytime All Year long</figcaption>
             </li>
             <li class="orbit-slide">
-              <img class="orbit-image" src="assets/images/sell2.jpg" alt="Space">
+              <img class="orbit-image" src="assets/images/sell2.jpg" alt="flea market">
               <figcaption class="orbit-caption">Buy All You Can</figcaption>
             </li>
             <li class="orbit-slide">
-              <img class="orbit-image" src="assets/images/sell3.jpeg" alt="Space">
+              <img class="orbit-image" src="assets/images/sell3.jpeg" alt="man boy collections">
               <figcaption class="orbit-caption">Make Money From Your Little Collections</figcaption>
             </li>
           </ul>
@@ -286,21 +293,17 @@
           </nav>
         </div>
       </div>
+
+
+    <div class="grid-x">
+      <div class="small-12 medium-12 large-12 cells" id="preview">
+        <h3 style="text-align:center">You have not posted any items yet!</h3>
+      </div>
     </div>
   </div>
-
-  <div class="grid-x">
-    <div class="small-12 medium-12 large-12 cells" id="preview">
-      <h3>You have not posted any items yet!</h3>
-    </div>
+  <div class="grid-x callout" id="footer">
+    <p class="footer cell small-12 medium-12 large-12">All rigths reserved. &copy 2017-<span id="year"></span> Richard Debrah-Thomas Canavan</p>
   </div>
-  <div class="grid-x" id="footer">
-    <p class="callout footer cell small-12 medium-12 large-12">All rigths reserved. &copy 2017-<span id="year"></span> Richard Debrah-Thomas Canavan</p>
-  </div>
-
-
-
-
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
