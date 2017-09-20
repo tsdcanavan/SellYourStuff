@@ -286,17 +286,17 @@ $('#itmForm').on('click', function (e) {
     e.preventDefault();
     itmName = $("#itmName").val().trim();
     itmDesc = $("#itmDesc").val().trim();
-    itmCat = $("#itmCat").val();
+    itmCat = $("#itmCat").val().trim();
     itmPrice = $("#itmPrice").val().trim();
     itmQty = $("#itmQty").val().trim();
     itmTag = $("#itmTag").val().trim();
     addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag)
-    //  $("itmName").val("");
-    //  $("itmDesc").val("");
-    //  $("itmCat").val("");
-    //  $("itmPrice").val("");
-    //  $("itmQty").val("");
-
+    itmName = $("itmName").val("");
+    itmDesc = $("itmDesc").val("");
+    itmCat = $("itmCat").val("");
+    itmPrice = $("itmPrice").val("");
+    itmQty = $("itmQty").val("");
+    itmTag = $("itmTag").val("");
 });
 
 function zipSearch(zipInput) {
@@ -312,7 +312,7 @@ function zipSearch(zipInput) {
         if (response.zip_codes === null) {
             console.log("failed zip lookup");
         } else {
-            console.log(response);
+            console.log($(this).response);
             for (i = 0; i < response.zip_codes.length; i++) {
                 zipArray[i] = response.zip_codes[i].zip_code;
             }
