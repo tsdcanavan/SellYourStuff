@@ -245,6 +245,7 @@ function itemSearch(searchString) {
 
 function zipSearch(zipInput) {
     var zipInput;
+    console.log("zipInput", zipInput);
     // zipcodeapi.com   -   zip code api
     var request = "https://www.zipcodeapi.com/rest/" +
         "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
