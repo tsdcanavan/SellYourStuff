@@ -111,11 +111,11 @@ color: #BB7F25;
 #userConfirmedDiv {
   background: #E0B8A1;
   margin: 0 0 10px 0;
-  border-top: sandybrown solid 10px;
+  border-top: #E0B8A1 solid 10px;
 }
 
 #landing {
-  background: #4E31B9;
+  background: sandybrown;
   margin: 0 0 10px 0;
   border-top: sandybrown solid 10px;
 }
