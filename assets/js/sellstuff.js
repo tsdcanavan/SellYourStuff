@@ -1,3 +1,16 @@
+//function list
+// function initFirebase() {
+// function loginUser(loginEmail) {
+// function addUser(loginEmail, name, zipCode, uid) { 
+// function addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag) {
+// function register() {
+// function logIn() {
+// function getWeather() {
+// function listSearchItems(userId, itemId) {
+// function itemSearch(searchString) {
+// function zipSearch(zipInput) {
+// $(document).ready(function () {
+
 // zipInput is the requested zip, we default the radius to 10 miles
 var zipInput;
 var zipArray = [];
@@ -117,6 +130,7 @@ function addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag) {
     database.ref(userId).on('child_added', function (snapshot) {
         itemId = snapshot.key;
         console.log(itemId);
+        listSearchItems(userId, itemId);
     });
 
 }
@@ -179,6 +193,83 @@ function getWeather() {
             $("#weather").append(addHtml);
         });
     });
+}
+
+function listSearchItems(userId, itemId) {
+    $("#preview").empty();
+
+    //add table
+     var tableHtml = $("<table>");
+     tableHtml.attr("id", "new-table");
+     tableHtml.attr("class", "table");
+     $("#preview").append(tableHtml);
+ 
+     // add header
+     var tableHtml = $("<thead>");
+     tableHtml.html("<tr><th>Item</th><th>Item Desc</th>" +
+         "<th>Item Price</th><th>Item Category</th><th>Contact<br>Seller</th></tr>");
+     tableHtml.attr("id", "new-header");
+     $("#new-table").append(tableHtml);
+
+         // add body
+    var tableHtml = $("<tbody>");
+    tableHtml.attr("class", "body");
+    tableHtml.attr("id", "new-body");
+    $("#new-table").append(tableHtml);
+
+    database.ref(userId).on("child_added", function (snapshot) {
+        var sv = snapshot.val();
+        var nextTrain = 0;
+console.log(sv);
+        // var dspTrainMin = moment().subtract(sv.trainFirst, "hh:mm").format("hh:mm");
+        // console.log(moment(dspTrainMin, "X").format("hh:mm"));
+        // nextTrain = (((moment().subtract(sv.trainFirst, "hh:mm"))%sv.trainFreq));
+        // nextTrain = sv.trainFreq - nextTrain;
+    
+        // add rows
+        var updHtml = $("<tr>");
+        // updHtml.html("<td>" + sv.trainName + "</td><td>" +
+        //     sv.trainDest + "</td><td>" + moment(sv.trainFirst,"hh:mm").format("hh:mm A") +
+        //     "</td><td>" + sv.trainFreq + "</td><td>" +
+        //     nextTrain + "</td>");
+        $("#new-body").append(updHtml);
+    });
+ 
+}
+
+function itemSearch(searchString) {
+    var searchString;
+    console.log("searchString ", searchString);
+
+}
+
+function zipSearch(zipInput) {
+    // zipcodeapi.com   -   zip code api
+    var request = "https://www.zipcodeapi.com/rest/" +
+        "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
+        "radius.json/" + zipInput + "/10/mile";
+    $.ajax({
+        url: request,
+        method: "GET"
+    }).done(function (response) {
+        console.log(response);
+        if (response.zip_codes === null) {
+            console.log("failed zip lookup");
+        } else {
+            console.log($(this).response);
+            for (i = 0; i < response.zip_codes.length; i++) {
+                zipArray[i] = response.zip_codes[i].zip_code;
+            }
+            database.ref().on("value", function (snapshot) {
+                console.log("inside firebase read");
+                console.log(snapshot);
+                if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1) {
+                    console.log(snapshot.val());
+                }
+            });
+        }
+    });
+
 }
 
 $(document).ready(function () {
@@ -275,18 +366,15 @@ $('#searchBtn').on('click', function () {
     }
 });
 
-function itemSearch(searchString) {
-    var searchString;
-    console.log("searchString ", searchString);
 
-}
 
 //onClick #regSend should trigger this function
 $('#itmForm').on('click', function (e) {
     e.preventDefault();
     itmName = $("#itmName").val().trim();
     itmDesc = $("#itmDesc").val().trim();
-    itmCat = $("#itmCat").val().trim();
+    var e = document.getElementById("itmCat");
+    itmCat = e.options[e.selectedIndex].text;
     itmPrice = $("#itmPrice").val().trim();
     itmQty = $("#itmQty").val().trim();
     itmTag = $("#itmTag").val().trim();
@@ -298,32 +386,3 @@ $('#itmForm').on('click', function (e) {
     itmQty = $("itmQty").val("");
     itmTag = $("itmTag").val("");
 });
-
-function zipSearch(zipInput) {
-    // zipcodeapi.com   -   zip code api
-    var request = "https://www.zipcodeapi.com/rest/" +
-        "js-wAyUdNRpP6Np73vS03R6gNZ4yl9v22jyDStRFlgvr4Uz7qs8tkeK7eOGzYcC1vbE/" +
-        "radius.json/" + zipInput + "/10/mile";
-    $.ajax({
-        url: request,
-        method: "GET"
-    }).done(function (response) {
-        console.log(response);
-        if (response.zip_codes === null) {
-            console.log("failed zip lookup");
-        } else {
-            console.log($(this).response);
-            for (i = 0; i < response.zip_codes.length; i++) {
-                zipArray[i] = response.zip_codes[i].zip_code;
-            }
-            database.ref().on("value", function (snapshot) {
-                console.log("inside firebase read");
-                console.log(snapshot);
-                if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1) {
-                    console.log(snapshot.val());
-                }
-            });
-        }
-    });
-
-}
