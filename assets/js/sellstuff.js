@@ -124,21 +124,15 @@ function addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag) {
 function register() {
     //capturing registration inputs(console logged and working)
     userEmail = $("#user-email").val().trim();
-    console.log("userEmail ", userEmail);
     userName = $("#reg2Input").val().trim();
-    console.log("userName ", userName);
     userPwd = $("#user-pw").val().trim();
-    console.log("userPwd ", userPwd);
     userLocation = $("#zipInput").val().trim();
-    console.log("userLocation ", userLocation);
 
 }
 //function to capture user Login in case we need it elsewhere
 function logIn() {
     userEmail = $(".user-email").val().trim();
-    console.log("userEmail ", userEmail);
     userPwd = $(".user-pw").val().trim();
-    console.log("userPwd ", userPwd);
 }
 
 function getWeather() {
@@ -220,6 +214,7 @@ $('#regSend').on('click', function () {
             $('#landing').attr('class', 'grid-x reveal');
             $('#login').attr('class', 'login grid-x reveal');
             $('#logOut').attr('class', '');
+            
         }
         else {
             alert('inputs are needed to register!')
@@ -236,18 +231,9 @@ $('#logIn').on('click', function () {
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
+        
     });
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            // User is signed in.
-            userId = user.uid;
-            $('#userConfirmedDiv').attr('class', 'grid-x');
-            $('#landing').attr('class', 'grid-x reveal');
-            $('#login').attr('class', 'login grid-x reveal');
-            $('#logOut').attr('class', '');
-            // ...
-        }
-    });
+    
 });
 
 //onclick signout

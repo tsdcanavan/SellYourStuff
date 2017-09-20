@@ -122,6 +122,7 @@ $('#regLink').on('click', function(){
     $('#regTab').attr('class', 'current');
     $('#logTab').attr('class', '');
     $('#show2Pwd').attr('class', 'logmod__tab lgm-1 show');
+    $('#noLog').attr('class', 'logmod__tab lgm-2')
 });
 
 $('#loginLink').on('click', function(){
