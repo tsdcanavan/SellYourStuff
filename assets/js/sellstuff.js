@@ -276,7 +276,6 @@ function zipSearch(zipInput) {
             }
             database.ref().on("value", function (snapshot) {
                 console.log("inside firebase read");
-                console.log(snapshot.val());
                 if (zipArray.indexOf(snapshot.val().userLocation.zip) != -1) {
                     console.log(snapshot.val());
                 }
