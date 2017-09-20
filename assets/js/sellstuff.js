@@ -231,9 +231,18 @@ $('#logIn').on('click', function () {
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
-        
     });
-    
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            userId = user.uid;
+            $('#userConfirmedDiv').attr('class', 'grid-x');
+            $('#landing').attr('class', 'grid-x reveal');
+            $('#login').attr('class', 'login grid-x reveal');
+            $('#logOut').attr('class', '');
+            // ...
+        }
+    });
 });
 
 //onclick signout
