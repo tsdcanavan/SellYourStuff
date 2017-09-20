@@ -137,20 +137,19 @@ function addItem(itmName, itmDesc, itmCat, itmPrice, itmQty, itmTag) {
 
 //submiit form clearing/reset
 
-function onSubmitForm() {
-    e.preventDefault();
-    $('#user-email').reset();
-    $('#user-pw').reset();
-    $('#user-pw-repeat').reset();
-    $('#reg2Input').reset();
-    $('#zipInput').reset();
-    $('#itmName').reset();
-    $('#itmDesc').reset();
-    $('#itmCat').reset();
-    $('#itmPrice').reset();
-    $('#itmQty').reset();
-    $('#itmTag').reset();
-}
+// function onSubmitForm() {
+//     $('#user-email').reset();
+//     $('#user-pw').reset();
+//     $('#user-pw-repeat').reset();
+//     $('#reg2Input').reset();
+//     $('#zipInput').reset();
+//     $('#itmName').reset();
+//     $('#itmDesc').reset();
+//     $('#itmCat').reset();
+//     $('#itmPrice').reset();
+//     $('#itmQty').reset();
+//     $('#itmTag').reset();
+// }
 
 
 
@@ -296,7 +295,6 @@ $(document).ready(function () {
 //onClick #regSend should trigger this function
 $('#regSend').on('click', function () {
     register();
-    onSubmitForm();
 
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
         // Handle Errors here.
@@ -339,7 +337,6 @@ $('#regSend').on('click', function () {
 //onClick #logIn should trigger this function
 $('#logIn').on('click', function () {
     logIn();
-    onSubmitForm();
     firebase.auth().signInWithEmailAndPassword(userEmail, userPwd).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
