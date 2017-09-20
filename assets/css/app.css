@@ -8,19 +8,28 @@ body {
 }
 
 #jumbotron {
-  background: #76323f;
+  background: url(../images/background.jpg) no-repeat center center fixed;
+	background-size: cover;
   margin: 0;
   border-bottom: 2px solid grey;
+  padding: 0;
 }
 
 #header {
-  background: #692323;
   color: #fff;
   font-weight: bold;
 }
 
 #searchInput {
   margin-right: 0;
+}
+
+#sub {
+  margin-left: 20px;
+}
+
+#lower{
+  margin: 0;
 }
 
 #welcome {
@@ -39,10 +48,12 @@ ul.menu {
 
 .login {
 float: right;
+color: #BB7F25;
 }
 
 .logOut {
   float: right;
+  margin-right: 20px;
   }
 
 .footer {
@@ -51,7 +62,7 @@ float: right;
 }
 
 #footer {
-  background: #c0b283;
+  background: #5C5233;
 }
 
 #logo {
@@ -60,13 +71,19 @@ float: right;
   font-weight: bolder;
 }
 
+#indexLink {
+  color: #ffae00;
+
+}
+
 .fi-shopping-bag {
-  color: #44445F;
+  color: #681A10;
 }
 
 #weather {
   position: relative;
-  text-align: center
+  text-align: center;
+  margin-bottom: 0;
 }
 
 #regSend {
@@ -86,9 +103,21 @@ float: right;
 }
 
 #orbit1 {
-  width: 700px;
+  width: 64.1%;
   margin-right: 20px;
-  background: #F5E7DD;
+  margin-left: 20px;
+}
+
+#userConfirmedDiv {
+  background: #E0B8A1;
+  margin: 0 0 10px 0;
+  border-top: sandybrown solid 10px;
+}
+
+#landing {
+  background: #4E31B9;
+  margin: 0 0 10px 0;
+  border-top: sandybrown solid 10px;
 }
 
 label {
@@ -96,7 +125,6 @@ label {
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
-  width: 100%;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
